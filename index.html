@@ -1,0 +1,1143 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An automated, low-latency Bengali speech-to-text pipeline evaluating multiple fine-tuned Whisper architectures.">
+      
+      
+      
+      
+      
+        <link rel="next" href="Model_Guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Bengali YouTube Transcription</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#timestamped-transcription-of-bengali-youtube-videos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Bengali YouTube Transcription" class="md-header__button md-logo" aria-label="Bengali YouTube Transcription" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bengali YouTube Transcription
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="Model_Guide/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Model Compilation Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="Progress%20Report/1%20Introduction/" class="md-tabs__link">
+          
+  
+  
+  Detailed Progress Report
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Bengali YouTube Transcription" class="md-nav__button md-logo" aria-label="Bengali YouTube Transcription" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bengali YouTube Transcription
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-demonstration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎥 Project Demonstration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset Preparation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Compilation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Experiments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-app-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web App Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance &amp; Evaluation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance &amp; Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#final-model-selection-word-error-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Model Selection (Word Error Rate %)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computational-efficiency-flops-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Efficiency (FLOPs Analysis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#author" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Author
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Model_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Compilation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detailed Progress Report
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Detailed Progress Report
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/1%20Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/2%20Dataset%20for%20Evaluating%20the%20Model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/3%20Faster-Whisper%20Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Faster-Whisper Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/4%20Evaluation%20Methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluation Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/5%20Baseline%20Model%20faster-whisper-large-v3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Baseline Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/6%20Mozilla%20AI%20Model%20faster-whisper-large-v3-bn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mozilla AI Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/7%20Tugstugi%20Model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tugstugi Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/8%20Bitwisemind-SAM%20Model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bitwisemind-SAM Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/9%20Final%20Model%20Selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Model Selection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/10%20Final%20Pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Progress%20Report/11%20Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="timestamped-transcription-of-bengali-youtube-videos">Timestamped Transcription of Bengali YouTube Videos</h1>
+<p><em>This project was developed during an internship at EICT IIT Guwahati under the guidance of Prithvijit Guha Sir.</em></p>
+<p>This repository contains an end-to-end pipeline for downloading Bengali news clips from YouTube, extracting audio, running highly-optimized Automatic Speech Recognition (ASR) using <code>faster-whisper</code>, generating timestamped transcriptions, and serving them via a modern web interface.  </p>
+<p><a href="/Progress_Report_Final.pdf">Progress_Report_Final.pdf</a> - contains the detailed progress report of the project.<br />
+<a href="https://app.notion.com/p/Timestamped-Transcription-of-Bengali-YouTube-Videos-3af6dec2219380999e1fc52130a3e9f3">Progress_Report_Notion</a> - Notion Link for the same progress report.</p>
+<h2 id="project-demonstration">🎥 Project Demonstration</h2>
+<div align="center">
+  <iframe width="800" height="450" src="https://www.youtube.com/embed/GmkpxjahfRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+<hr />
+<h2 id="environment-setup">Environment Setup</h2>
+<p>The project requires <strong>Python 3.11</strong>. Once your Python environment is ready, install the required dependencies:</p>
+<pre><code class="language-bash">python -m venv venv
+.\venv\Scripts\Activate.ps1    # Windows (PowerShell)
+pip install -r requirements.txt
+</code></pre>
+<hr />
+<h2 id="dataset-preparation">Dataset Preparation</h2>
+<p>To download the selected YouTube videos and extract the required 16kHz mono <code>.wav</code> audio files automatically, run the dataset downloader script:</p>
+<pre><code class="language-bash">.\venv\Scripts\Activate.ps1
+python download_dataset.py
+</code></pre>
+<p>This will populate your <code>dataset/</code> directory according to the <code>dataset/metadata.csv</code> mapping.</p>
+<hr />
+<h2 id="model-compilation">Model Compilation</h2>
+<p>This pipeline relies on heavily optimized <code>faster-whisper</code> (CTranslate2) formats for blazing-fast inference. While the baseline <code>large-v3</code> model downloads automatically, our specialized Bengali fine-tuned models must be compiled manually.</p>
+<p>Follow the step-by-step instructions in the dedicated guide:
+👉 <strong><a href="/Model_Guide.md">Model_Guide.md</a></strong></p>
+<hr />
+<h2 id="running-experiments">Running Experiments</h2>
+<p>The core evaluation logic and transcription pipeline are contained in the Jupyter Notebook:
+<strong><code>experiment.ipynb</code></strong></p>
+<p>To run the experiments sequentially:
+1. <strong>Load DLLs:</strong> Run the initial DLL loading cell (required for CTranslate2 on Windows).
+2. <strong>Load Helpers:</strong> Run the transcription helper function cell to initialize the processing logic.
+3. <strong>Run Models:</strong> Under each specific model section:
+   * First, run the <strong>Model Loading</strong> cell to initialize the model in VRAM.
+   * Then, run the <strong>Transcription</strong> cell to process the dataset.</p>
+<p><em>Note: All output transcriptions and evaluation metrics are saved to the <code>backup/bn1/Outputs</code> folder during experimental runs.</em></p>
+<hr />
+<h2 id="web-app-deployment">Web App Deployment</h2>
+<p>The project includes a real-time web application to stream transcription results. <strong>Make sure to activate the necessary python enviromnent before running this</strong>.</p>
+<p><strong>Start the Backend (FastAPI)</strong></p>
+<pre><code class="language-bash">.\venv\Scripts\Activate.ps1
+cd deployment/backend
+python main.py
+</code></pre>
+<p><strong>Start the Frontend (React/Vite)</strong></p>
+<pre><code class="language-bash">cd deployment/frontend
+npm install
+npm run dev
+</code></pre>
+<hr />
+<h2 id="performance-evaluation">Performance &amp; Evaluation</h2>
+<h3 id="final-model-selection-word-error-rate">Final Model Selection (Word Error Rate %)</h3>
+<p>Bitwisemind-SAM was selected as our final production model due to its massive superiority in Bengali zero-shot transcription compared to standard Large models.</p>
+<table>
+<thead>
+<tr>
+<th>Video</th>
+<th>Video Length</th>
+<th>Baseline (large-v3)</th>
+<th>Mozilla AI (large-v3-bn)</th>
+<th>Tugstugi</th>
+<th><strong>Bitwisemind-SAM</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rain</td>
+<td>1m 54s</td>
+<td>81.4%</td>
+<td>70.7%</td>
+<td>24.65%</td>
+<td><strong>16.74%</strong></td>
+</tr>
+<tr>
+<td>Delhi Protest</td>
+<td>2m 14s</td>
+<td>83.87%</td>
+<td>63.98%</td>
+<td>23.12%</td>
+<td><strong>16.67%</strong></td>
+</tr>
+<tr>
+<td>Subhendu CM</td>
+<td>4m 17s</td>
+<td>87.22%</td>
+<td>74.76%</td>
+<td>32.27%</td>
+<td><strong>17.25%</strong></td>
+</tr>
+<tr>
+<td>Dengue</td>
+<td>3m 3s</td>
+<td>86.54%</td>
+<td>70.05%</td>
+<td>31.59%</td>
+<td><strong>14.84%</strong></td>
+</tr>
+<tr>
+<td>Terrorist(Long)</td>
+<td>20m 3s</td>
+<td>83.46%</td>
+<td>69.57%</td>
+<td>31.58%</td>
+<td><strong>19.63%</strong></td>
+</tr>
+<tr>
+<td>Taslima Nasrin(Long)</td>
+<td>26m 19s</td>
+<td>78.28%</td>
+<td>61.91%</td>
+<td>30.11%</td>
+<td><strong>18.99%</strong></td>
+</tr>
+<tr>
+<td>Shamik(Long)</td>
+<td>20m 33s</td>
+<td>83.31%</td>
+<td>72.19%</td>
+<td>33.94%</td>
+<td><strong>20.19%</strong></td>
+</tr>
+<tr>
+<td>10am News(Long)</td>
+<td>21m 26s</td>
+<td>86.77%</td>
+<td>70.56%</td>
+<td>32.74%</td>
+<td><strong>20.64%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="computational-efficiency-flops-analysis">Computational Efficiency (FLOPs Analysis)</h3>
+<p>The Medium architecture (Bitwisemind-SAM) not only achieves vastly superior accuracy but operates at less than half the computational cost of the Large baseline models.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Scenario / Metric</th>
+<th style="text-align: left;">Whisper Large Architecture</th>
+<th style="text-align: left;">Whisper Medium Architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Associated Models</strong></td>
+<td style="text-align: left;"><code>large-v3</code>, <code>mozilla-ai/large-v3-bn</code></td>
+<td style="text-align: left;"><code>tugstugi</code>, <code>bitwisemind-sam</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Best Case (Silence - 1 token)</strong></td>
+<td style="text-align: left;">2.22 TFLOPS</td>
+<td style="text-align: left;">1.07 TFLOPS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Average Case (Normal Speech - 150 tokens)</strong></td>
+<td style="text-align: left;">2.46 TFLOPS</td>
+<td style="text-align: left;">1.19 TFLOPS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Worst Case (Hallucination - 448 tokens max)</strong></td>
+<td style="text-align: left;">2.94 TFLOPS</td>
+<td style="text-align: left;">1.43 TFLOPS</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="project-structure">Project Structure</h2>
+<pre><code class="language-text">├── dataset/                     # Contains video metadata and extracted audio
+├── deployment/                  # Deployment source code (Backend/Frontend)
+├── models/                      # Downloaded and compiled faster-whisper (ct2) models
+├── Outputs/                     # Final transcribed outputs
+├── download_dataset.py          # Script to download YouTube videos via yt-dlp
+├── experiment.ipynb             # Main experimental model evaluation notebook
+├── flops_analysis.ipynb         # GFLOPS calculation logic for model architectures
+├── License                      # MIT License
+├── Model_Guide.md               # Guide to download and compile ct2 version models
+├── Progress_Report_Final.pdf    # Detailed Progress Report of the project
+├── README.md                    # Readme file for the project
+└── requirements.txt             # Python dependencies (requires Python 3.11)
+</code></pre>
+<h2 id="author">Author</h2>
+<p><a href="https://github.com/JyotismoyKalita">Jyotismoy Kalita</a></p>
+<h2 id="license">License</h2>
+<p>MIT License</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
