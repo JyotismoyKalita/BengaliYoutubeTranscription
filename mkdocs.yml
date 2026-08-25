@@ -19,3 +19,10 @@ nav:
   - Home: index.md
   - Model Compilation Guide: Model_Guide.md
   - Detailed Progress Report: Progress_Report.md
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_mermaid_custom
