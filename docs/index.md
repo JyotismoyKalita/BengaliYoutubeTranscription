@@ -10,9 +10,10 @@
 
 
 > **P.S. Additional notes not mentioned in the video:**  
-> * For each Bengali News YouTube video used for evaluation, their official `YouTube subtitles` were used as the Ground Truth.  
-> * For downloading YouTube videos directly within the pipeline, `yt-dlp` was utilized.  
-> * For extracting audio from downloaded YouTube videos or local video files, `ffmpeg` was utilized.  
+>
+> - For each Bengali News YouTube video used for evaluation, their official `YouTube subtitles` were used as the Ground Truth.  
+> - For downloading YouTube videos directly within the pipeline, `yt-dlp` was utilized.  
+> - For extracting audio from downloaded YouTube videos or local video files, `ffmpeg` was utilized.  
 
 <div align="center">
   <iframe width="800" height="450" src="https://www.youtube.com/embed/GmkpxjahfRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
