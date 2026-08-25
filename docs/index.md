@@ -2,7 +2,7 @@
 
 *This project was developed during an internship at EICT IIT Guwahati under the guidance of Prithvijit Guha Sir.*  
 
-**[Read the Full Report and Explanations Here](Progress_Report.md)** - Browse the comprehensive reports and explanations of the project  
+**[Read the Full Project Explanation Here](Progress_Report.md)** - Browse the comprehensive explanation of the project  
 
 **[View Source Code on GitHub](https://github.com/JyotismoyKalita/BengaliYoutubeTranscription)** - Access the complete repository, scripts, and datasets.
 

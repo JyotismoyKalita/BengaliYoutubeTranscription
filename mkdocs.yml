@@ -18,7 +18,7 @@ theme:
 nav:
   - Home: index.md
   - Model Compilation Guide: Model_Guide.md
-  - Detailed Progress Report: Progress_Report.md
+  - Detailed Project Explanations: Progress_Report.md
 
 markdown_extensions:
   - pymdownx.superfences:

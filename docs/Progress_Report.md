@@ -1,16 +1,20 @@
-# 1. Introduction
+# Detailed Project Explanation
 
-Transcribing Bengali audio from YouTube videos presents a unique set of challenges. Bengali is a morphologically rich language, and the content on YouTube often features varying accents, background noise, multiple speakers, and domain-specific vocabulary.  
+## 1. Introduction
 
-This project aims to build an efficient, highly accurate, and scalable timestamped transcription pipeline specifically tailored for Bengali YouTube videos.  
+Transcribing Bengali audio from YouTube videos presents a unique set of challenges. Bengali is a morphologically rich language, and the content on YouTube often features varying accents, background noise, multiple speakers, and domain-specific vocabulary.
+
+This project aims to build an efficient, highly accurate, and scalable timestamped transcription pipeline specifically tailored for Bengali YouTube videos. 
 
 To achieve this, we evaluate several state-of-the-art automatic speech recognition (ASR) models based on the Whisper architecture. We focus heavily on minimizing Word Error Rate (WER) and Character Error Rate (CER), optimizing inference speed, and effectively handling the intricacies of the Bengali language.
+
+This progress report documents the journey from collecting a robust testing dataset to evaluating open-source models, and finally identifying the best-performing model for our use case.
 
 
 <br>
 
 
-# 2. Dataset for Evaluating the Model
+## 2. Dataset for Evaluating the Model
 
 To ensure our evaluation accurately reflects real-world performance, we curated a diverse dataset of Bengali YouTube videos. We focused on news clips as they contain clear speech, but still present challenges like background noise and varying reporter accents.
 
@@ -55,7 +59,7 @@ def download_and_extract_audio(url, output_stem):
 <br>
 
 
-# 3. Faster-Whisper Architecture
+## 3. Faster-Whisper Architecture
 
 Throughout this project, we prioritize the **faster-whisper** implementation of OpenAI's Whisper models over the standard HuggingFace/OpenAI versions. 
 
@@ -87,7 +91,7 @@ print("CUDA DLLs loaded")
 <br>
 
 
-# 4. Evaluation Methodology
+## 4. Evaluation Methodology
 
 To objectively evaluate the transcription quality, we use the industry-standard **JIWER** library.
 
@@ -107,7 +111,7 @@ The metrics are calculated across all 5 test videos for each model to produce a 
 <br>
 
 
-# 5. Baseline Model: faster-whisper-large-v3
+## 5. Baseline Model: faster-whisper-large-v3
 
 Our first test was with the default OpenAI `large-v3` model. While `large-v3` is an incredibly capable multilingual model trained on millions of hours of audio, it is a generalist. It has not been specifically fine-tuned extensively enough on Bengali to capture the nuances of regional dialects and complex vocabulary.
 
@@ -132,7 +136,7 @@ As noted in various ASR research communities, zero-shot performance of base Whis
 <br>
 
 
-# 6. Mozilla AI Model: faster-whisper-large-v3-bn
+## 6. Mozilla AI Model: faster-whisper-large-v3-bn
 
 To improve upon the baseline, we tested the `mozilla-ai/faster-whisper-large-v3-bn` model. This is a fine-tuned version of OpenAI's Whisper large-v3 model, specifically targeted at Bengali (`bn`) by Mozilla.ai (available on HuggingFace as `mozilla-ai/whisper-large-v3-bn`). 
 
@@ -165,7 +169,7 @@ ct2-transformers-converter --model mozilla-ai/whisper-large-v3-bn --output_dir m
 <br>
 
 
-# 7. Tugstugi Model
+## 7. Tugstugi Model
 
 The `tugstugi` model (`tugstugi/bengaliai-regional-asr_whisper-medium`) represents a paradigm shift in our evaluation. "Tugstugi" is a prominent contributor and Kaggle Grandmaster in the Bengali ASR community, well-known for providing high-quality models and won 1st Place in Bengali.AI's Speech Recognition competition hosted in Kaggle - [Bengali.AI Competition](https://www.kaggle.com/competitions/bengaliai-speech/writeups/chimege-1st-place-solution)
 
@@ -198,7 +202,7 @@ ct2-transformers-converter --model tugstugi/bengaliai-regional-asr_whisper-mediu
 <br>
 
 
-# 8. Bitwisemind-SAM Model
+## 8. Bitwisemind-SAM Model
 
 The `bitwisemind-sam` model (`bitwisemind/sam_15000_clean_text_full_model`) is a specialized, fine-tuned iteration built upon the successes of the tugstugi architecture. "BitwiseMind" is a research team from BUET that participated in the **DL Sprint 4.0** competition, which specifically focused on improving Bengali long-form speech recognition in noisy environments.
 
@@ -231,7 +235,7 @@ ct2-transformers-converter --model bitwisemind/sam_15000_clean_text_full_model -
 <br>
 
 
-# 9. Final Model Selection
+## 9. Final Model Selection
 
 After extensive evaluation across diverse Bengali YouTube news clips (featuring varying background noise levels, different speaker accents, and complex vocabulary), we have definitively selected the **Bitwisemind-SAM** (`bitwisemind/sam_15000_clean_text_full_model`) model for our transcription pipeline.
 
@@ -279,7 +283,7 @@ The data clearly supports our decision. While OpenAI's default `large-v3` models
 <br>
 
 
-# 10. Final Pipeline
+## 10. Final Pipeline
 
 With our ideal model selected and the parameters tuned, we have established the final, highly-optimized Bengali ASR pipeline. The system is designed to take either a direct YouTube link or a local video file, handle all necessary preprocessing steps automatically, and output a clean, timestamped transcription.
 
@@ -323,7 +327,7 @@ The final result is a highly accurate, easily readable, and perfectly timed tran
 <br>
 
 
-# 11. Deployment
+## 11. Deployment
 
 With the `bitwisemind-sam` model selected and the pipeline optimized, the system is wrapped into a full-stack web application located in the `VideoTranscription` directory. This allows end-users to easily interact with the model via a modern UI.
 
