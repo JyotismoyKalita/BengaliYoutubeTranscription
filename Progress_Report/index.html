@@ -1,0 +1,1294 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An automated, low-latency Bengali speech-to-text pipeline evaluating multiple fine-tuned Whisper architectures.">
+      
+      
+      
+      
+        <link rel="prev" href="../Model_Guide/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Detailed Progress Report - Bengali YouTube Transcription</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bengali YouTube Transcription" class="md-header__button md-logo" aria-label="Bengali YouTube Transcription" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bengali YouTube Transcription
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Detailed Progress Report
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/JyotismoyKalita/BengaliYoutubeTranscription" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JyotismoyKalita/BengaliYoutubeTranscription
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Model_Guide/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Model Compilation Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Detailed Progress Report
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bengali YouTube Transcription" class="md-nav__button md-logo" aria-label="Bengali YouTube Transcription" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bengali YouTube Transcription
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/JyotismoyKalita/BengaliYoutubeTranscription" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JyotismoyKalita/BengaliYoutubeTranscription
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Model_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Compilation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detailed Progress Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="1-introduction">1. Introduction</h1>
+<p>Transcribing Bengali audio from YouTube videos presents a unique set of challenges. Bengali is a morphologically rich language, and the content on YouTube often features varying accents, background noise, multiple speakers, and domain-specific vocabulary.  </p>
+<p>This project aims to build an efficient, highly accurate, and scalable timestamped transcription pipeline specifically tailored for Bengali YouTube videos.  </p>
+<p>To achieve this, we evaluate several state-of-the-art automatic speech recognition (ASR) models based on the Whisper architecture. We focus heavily on minimizing Word Error Rate (WER) and Character Error Rate (CER), optimizing inference speed, and effectively handling the intricacies of the Bengali language.</p>
+<p><br></p>
+<h1 id="2-dataset-for-evaluating-the-model">2. Dataset for Evaluating the Model</h1>
+<p>To ensure our evaluation accurately reflects real-world performance, we curated a diverse dataset of Bengali YouTube videos. We focused on news clips as they contain clear speech, but still present challenges like background noise and varying reporter accents.</p>
+<h3 id="chosen-videos">Chosen Videos</h3>
+<p>We selected eight specific videos (4 short, 4 long) and mapped them in <code>dataset/metadata.csv</code>:
+- <strong>Rain</strong> (Short, ~2 mins)
+- <strong>Delhi Protest</strong> (Short, ~2 mins)
+- <strong>Subhendu CM</strong> (Short, ~4 mins)
+- <strong>Dengue</strong> (Short, ~3 mins)
+- <strong>Terrorist(Long)</strong> (Long, ~20 mins)
+- <strong>Taslima Nasrin(Long)</strong> (Long, ~26 mins)
+- <strong>Shamik(Long)</strong> (Long, ~20 mins)
+- <strong>10am News(Long)</strong> (Long, ~21 mins)</p>
+<h3 id="audio-extraction-via-yt-dlp-and-ffmpeg">Audio Extraction via <code>yt-dlp</code> and <code>ffmpeg</code></h3>
+<p>To process these videos uniformly, we utilized <code>yt-dlp</code> for downloading and <code>ffmpeg</code> for audio extraction. 
+We strictly enforce a consistent audio format: <strong>16 kHz, Mono, PCM 16-bit WAV</strong>. This format is universally required by Whisper-based models for optimal processing.</p>
+<pre><code class="language-python">import subprocess
+import yt_dlp
+
+def download_and_extract_audio(url, output_stem):
+    opts = {
+        &quot;format&quot;: &quot;bestaudio/best&quot;,
+        &quot;outtmpl&quot;: output_stem,
+        &quot;postprocessors&quot;: [{&quot;key&quot;: &quot;FFmpegExtractAudio&quot;, &quot;preferredcodec&quot;: &quot;wav&quot;}],
+    }
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        ydl.download([url])
+
+    subprocess.run([
+        &quot;ffmpeg&quot;, &quot;-i&quot;, f&quot;{output_stem}.wav&quot;,
+        &quot;-vn&quot;, &quot;-acodec&quot;, &quot;pcm_s16le&quot;, &quot;-ar&quot;, &quot;16000&quot;, &quot;-ac&quot;, &quot;1&quot;, 
+        f&quot;{output_stem}_16k.wav&quot;
+    ], check=True)
+</code></pre>
+<p><br></p>
+<h1 id="3-faster-whisper-architecture">3. Faster-Whisper Architecture</h1>
+<p>Throughout this project, we prioritize the <strong>faster-whisper</strong> implementation of OpenAI's Whisper models over the standard HuggingFace/OpenAI versions. </p>
+<h3 id="why-faster-whisper">Why faster-whisper?</h3>
+<ol>
+<li><strong>CTranslate2 Backend</strong>: It utilizes the highly optimized CTranslate2 engine, which significantly reduces VRAM usage and speeds up inference times by up to 4x compared to the original implementation.</li>
+<li><strong>Built-in VAD (Voice Activity Detection)</strong>: Faster-whisper integrates Silero VAD. This allows us to filter out silence and non-speech segments <em>before</em> they are fed into the transformer, greatly reducing hallucinations.</li>
+<li><strong>Batching Support</strong>: Using <code>BatchedInferencePipeline</code>, we can process multiple chunks of audio simultaneously, maximizing GPU utilization.</li>
+</ol>
+<p><strong>Note</strong>: GPU execution requires the following NVIDIA libraries to be installed:</p>
+<ul>
+<li>cuBLAS for CUDA 12  </li>
+<li>cuDNN 9 for CUDA 12  </li>
+</ul>
+<p>The latest versions of ctranslate2 only support CUDA 12 and cuDNN 9. Hence correct <em>.dll</em>s were imported manually in this project.</p>
+<pre><code class="language-python">import ctypes
+
+for dll in [
+    r&quot;D:\Python\ytt\Lib\site-packages\nvidia\cublas\bin\cublas64_12.dll&quot;,
+    r&quot;D:\Python\ytt\Lib\site-packages\nvidia\cudnn\bin\cudnn64_9.dll&quot;,
+]:
+    ctypes.CDLL(dll)
+
+print(&quot;CUDA DLLs loaded&quot;)
+</code></pre>
+<p><br></p>
+<h1 id="4-evaluation-methodology">4. Evaluation Methodology</h1>
+<p>To objectively evaluate the transcription quality, we use the industry-standard <strong>JIWER</strong> library.</p>
+<h3 id="metrics-computed">Metrics Computed</h3>
+<ul>
+<li><strong>WER (Word Error Rate)</strong>: Measures how many words were inserted, deleted, or substituted compared to the ground truth.</li>
+<li><strong>CER (Character Error Rate)</strong>: Measures character-level errors. Particularly useful for Bengali to track minor spelling mistakes (matras, juktakkhors) that might artificially inflate WER.</li>
+<li><strong>Word Accuracy</strong>: The percentage of words correctly predicted.</li>
+</ul>
+<h3 id="pre-processing-for-bengali">Pre-processing for Bengali</h3>
+<p>Before computing metrics, we clean both the ground truth and predicted text by:
+- Removing newlines and excess whitespace.
+- Stripping punctuation, including the Bengali danda (<code>।</code>).</p>
+<p>The metrics are calculated across all 5 test videos for each model to produce a comprehensive benchmark.</p>
+<p><br></p>
+<h1 id="5-baseline-model-faster-whisper-large-v3">5. Baseline Model: faster-whisper-large-v3</h1>
+<p>Our first test was with the default OpenAI <code>large-v3</code> model. While <code>large-v3</code> is an incredibly capable multilingual model trained on millions of hours of audio, it is a generalist. It has not been specifically fine-tuned extensively enough on Bengali to capture the nuances of regional dialects and complex vocabulary.</p>
+<p>As noted in various ASR research communities, zero-shot performance of base Whisper models on low-resource languages like Bengali often suffers from "hallucinations" and a tendency to drop (delete) large chunks of audio if the acoustic confidence drops below a certain threshold.</p>
+<h3 id="evaluation-results">Evaluation Results</h3>
+<table>
+<thead>
+<tr>
+<th>Video</th>
+<th>Video Length</th>
+<th>Transcription Time</th>
+<th>WER %</th>
+<th>CER %</th>
+<th>Word Accuracy %</th>
+<th>GT Words</th>
+<th>Pred Words</th>
+<th>Correct Words</th>
+<th>Substitutions</th>
+<th>Deletions (Missed)</th>
+<th>Insertions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rain</td>
+<td>1m 54s</td>
+<td>4s</td>
+<td>81.4</td>
+<td>65.57</td>
+<td>20.47</td>
+<td>215</td>
+<td>101</td>
+<td>44</td>
+<td>53</td>
+<td>118</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Delhi Protest</td>
+<td>2m 14s</td>
+<td>4s</td>
+<td>83.87</td>
+<td>62.55</td>
+<td>17.74</td>
+<td>186</td>
+<td>98</td>
+<td>33</td>
+<td>62</td>
+<td>91</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Subhendu CM</td>
+<td>4m 17s</td>
+<td>8s</td>
+<td>87.22</td>
+<td>71.46</td>
+<td>13.1</td>
+<td>626</td>
+<td>227</td>
+<td>82</td>
+<td>143</td>
+<td>401</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Dengue</td>
+<td>3m 3s</td>
+<td>6s</td>
+<td>86.54</td>
+<td>65.26</td>
+<td>13.74</td>
+<td>364</td>
+<td>191</td>
+<td>50</td>
+<td>140</td>
+<td>174</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Terrorist(Long)</td>
+<td>20m 3s</td>
+<td>49s</td>
+<td>83.46</td>
+<td>64.16</td>
+<td>17.49</td>
+<td>2527</td>
+<td>1153</td>
+<td>442</td>
+<td>687</td>
+<td>1398</td>
+<td>24</td>
+</tr>
+<tr>
+<td>Taslima Nasrin(Long)</td>
+<td>26m 19s</td>
+<td>1m 2s</td>
+<td>78.28</td>
+<td>56.14</td>
+<td>22.43</td>
+<td>2670</td>
+<td>1472</td>
+<td>599</td>
+<td>854</td>
+<td>1217</td>
+<td>19</td>
+</tr>
+<tr>
+<td>Shamik(Long)</td>
+<td>20m 33s</td>
+<td>56s</td>
+<td>83.31</td>
+<td>63.13</td>
+<td>17.56</td>
+<td>2625</td>
+<td>1200</td>
+<td>461</td>
+<td>716</td>
+<td>1448</td>
+<td>23</td>
+</tr>
+<tr>
+<td>10am News(Long)</td>
+<td>21m 26s</td>
+<td>57s</td>
+<td>86.77</td>
+<td>66.44</td>
+<td>14.21</td>
+<td>2456</td>
+<td>1025</td>
+<td>349</td>
+<td>652</td>
+<td>1455</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis</strong>: The baseline <code>large-v3</code> performed extremely poorly on the Bengali dataset. With WERs consistently exceeding 80%, the model exhibited a massive amount of deletions (missed words) and substitutions. It essentially failed to produce cohesive Bengali sentences, validating the consensus that base Whisper requires fine-tuning for this language.</p>
+<p><br></p>
+<h1 id="6-mozilla-ai-model-faster-whisper-large-v3-bn">6. Mozilla AI Model: faster-whisper-large-v3-bn</h1>
+<p>To improve upon the baseline, we tested the <code>mozilla-ai/faster-whisper-large-v3-bn</code> model. This is a fine-tuned version of OpenAI's Whisper large-v3 model, specifically targeted at Bengali (<code>bn</code>) by Mozilla.ai (available on HuggingFace as <code>mozilla-ai/whisper-large-v3-bn</code>). </p>
+<p>While this model benefits from targeted Bengali training data, community reports indicate that generalized fine-tunes still struggle with highly noisy, real-world audio like YouTube news broadcasts compared to models trained explicitly on competition-grade regional datasets.</p>
+<h3 id="ctranslate2-conversion">CTranslate2 Conversion</h3>
+<p>Because a <code>faster-whisper</code> compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:</p>
+<pre><code class="language-bash">ct2-transformers-converter --model mozilla-ai/whisper-large-v3-bn --output_dir models/whisper-large-v3-bn-ct2 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
+</code></pre>
+<h3 id="evaluation-results_1">Evaluation Results</h3>
+<table>
+<thead>
+<tr>
+<th>Video</th>
+<th>Video Length</th>
+<th>Transcription Time</th>
+<th>WER %</th>
+<th>CER %</th>
+<th>Word Accuracy %</th>
+<th>GT Words</th>
+<th>Pred Words</th>
+<th>Correct Words</th>
+<th>Substitutions</th>
+<th>Deletions (Missed)</th>
+<th>Insertions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rain</td>
+<td>1m 54s</td>
+<td>5s</td>
+<td>70.7</td>
+<td>60.75</td>
+<td>29.77</td>
+<td>215</td>
+<td>89</td>
+<td>64</td>
+<td>24</td>
+<td>127</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Delhi Protest</td>
+<td>2m 14s</td>
+<td>5s</td>
+<td>63.98</td>
+<td>52.34</td>
+<td>37.1</td>
+<td>186</td>
+<td>94</td>
+<td>69</td>
+<td>23</td>
+<td>94</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Subhendu CM</td>
+<td>4m 17s</td>
+<td>9s</td>
+<td>74.76</td>
+<td>66.82</td>
+<td>25.56</td>
+<td>626</td>
+<td>233</td>
+<td>160</td>
+<td>71</td>
+<td>395</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Dengue</td>
+<td>3m 3s</td>
+<td>7s</td>
+<td>70.05</td>
+<td>57.35</td>
+<td>31.04</td>
+<td>364</td>
+<td>178</td>
+<td>113</td>
+<td>61</td>
+<td>190</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Terrorist(Long)</td>
+<td>20m 3s</td>
+<td>1m 11s</td>
+<td>69.57</td>
+<td>58.17</td>
+<td>31.14</td>
+<td>2527</td>
+<td>1164</td>
+<td>787</td>
+<td>359</td>
+<td>1381</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Taslima Nasrin(Long)</td>
+<td>26m 19s</td>
+<td>1m 11s</td>
+<td>61.91</td>
+<td>49.23</td>
+<td>39.29</td>
+<td>2670</td>
+<td>1491</td>
+<td>1049</td>
+<td>410</td>
+<td>1211</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Shamik(Long)</td>
+<td>20m 33s</td>
+<td>58s</td>
+<td>72.19</td>
+<td>59.64</td>
+<td>28.46</td>
+<td>2625</td>
+<td>1161</td>
+<td>747</td>
+<td>397</td>
+<td>1481</td>
+<td>17</td>
+</tr>
+<tr>
+<td>10am News(Long)</td>
+<td>21m 26s</td>
+<td>1m 7s</td>
+<td>70.56</td>
+<td>60.12</td>
+<td>30.01</td>
+<td>2456</td>
+<td>1070</td>
+<td>737</td>
+<td>319</td>
+<td>1400</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis</strong>: While this model showed some improvement over the baseline (reducing WER by ~10-20% on average), it still suffered from massive deletions. The model remains overly conservative and drops large segments of speech, indicating that while its vocabulary is better, its acoustic robustness for fast-paced, noisy YouTube audio is lacking.</p>
+<p><br></p>
+<h1 id="7-tugstugi-model">7. Tugstugi Model</h1>
+<p>The <code>tugstugi</code> model (<code>tugstugi/bengaliai-regional-asr_whisper-medium</code>) represents a paradigm shift in our evaluation. "Tugstugi" is a prominent contributor and Kaggle Grandmaster in the Bengali ASR community, well-known for providing high-quality models and won 1st Place in Bengali.AI's Speech Recognition competition hosted in Kaggle - <a href="https://www.kaggle.com/competitions/bengaliai-speech/writeups/chimege-1st-place-solution">Bengali.AI Competition</a></p>
+<p>Unlike the generic large-v3 models, this model is built on the <code>medium</code> architecture but features a <strong>custom 12k vocabulary tokenizer</strong> specifically optimized for Bengali. Furthermore, it was heavily trained on diverse regional datasets including OpenSLR, Kathbath, and pseudo-labeled YouTube data. Because of this specialized architecture and training corpus, it is widely cited as the baseline foundation for state-of-the-art Bengali transcription.</p>
+<h3 id="ctranslate2-conversion_1">CTranslate2 Conversion</h3>
+<p>Because a <code>faster-whisper</code> compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:</p>
+<pre><code class="language-bash">ct2-transformers-converter --model tugstugi/bengaliai-regional-asr_whisper-medium --output_dir models/tugstugi_ct2_float16 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
+</code></pre>
+<h3 id="evaluation-results_2">Evaluation Results</h3>
+<table>
+<thead>
+<tr>
+<th>Video</th>
+<th>Video Length</th>
+<th>Transcription Time</th>
+<th>WER %</th>
+<th>CER %</th>
+<th>Word Accuracy %</th>
+<th>GT Words</th>
+<th>Pred Words</th>
+<th>Correct Words</th>
+<th>Substitutions</th>
+<th>Deletions (Missed)</th>
+<th>Insertions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rain</td>
+<td>1m 54s</td>
+<td>3s</td>
+<td>24.65</td>
+<td>11.94</td>
+<td>75.81</td>
+<td>215</td>
+<td>203</td>
+<td>163</td>
+<td>39</td>
+<td>13</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Delhi Protest</td>
+<td>2m 14s</td>
+<td>2s</td>
+<td>23.12</td>
+<td>7.28</td>
+<td>79.03</td>
+<td>186</td>
+<td>185</td>
+<td>147</td>
+<td>34</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Subhendu CM</td>
+<td>4m 17s</td>
+<td>5s</td>
+<td>32.27</td>
+<td>15.63</td>
+<td>69.97</td>
+<td>626</td>
+<td>587</td>
+<td>438</td>
+<td>135</td>
+<td>53</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Dengue</td>
+<td>3m 3s</td>
+<td>4s</td>
+<td>31.59</td>
+<td>11.87</td>
+<td>70.88</td>
+<td>364</td>
+<td>367</td>
+<td>258</td>
+<td>100</td>
+<td>6</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Terrorist(Long)</td>
+<td>20m 3s</td>
+<td>23s</td>
+<td>31.58</td>
+<td>14.04</td>
+<td>71.94</td>
+<td>2527</td>
+<td>2482</td>
+<td>1818</td>
+<td>575</td>
+<td>134</td>
+<td>89</td>
+</tr>
+<tr>
+<td>Taslima Nasrin(Long)</td>
+<td>26m 19s</td>
+<td>27s</td>
+<td>30.11</td>
+<td>14.27</td>
+<td>74.49</td>
+<td>2670</td>
+<td>2672</td>
+<td>1989</td>
+<td>560</td>
+<td>121</td>
+<td>123</td>
+</tr>
+<tr>
+<td>Shamik(Long)</td>
+<td>20m 33s</td>
+<td>25s</td>
+<td>33.94</td>
+<td>13.27</td>
+<td>70.1</td>
+<td>2625</td>
+<td>2660</td>
+<td>1840</td>
+<td>714</td>
+<td>71</td>
+<td>106</td>
+</tr>
+<tr>
+<td>10am News(Long)</td>
+<td>21m 26s</td>
+<td>25s</td>
+<td>32.74</td>
+<td>13.43</td>
+<td>69.99</td>
+<td>2456</td>
+<td>2383</td>
+<td>1719</td>
+<td>597</td>
+<td>140</td>
+<td>67</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis</strong>: The <code>tugstugi</code> model demonstrates a massive leap forward. The Word Accuracy jumped from ~25% to <strong>70-80%</strong>, and deletions plummeted dramatically. The custom tokenizer and regional training data clearly paid off, as the model correctly transcribes the vast majority of the audio, though it still exhibits some word-level substitutions on highly complex vocabulary.</p>
+<p><br></p>
+<h1 id="8-bitwisemind-sam-model">8. Bitwisemind-SAM Model</h1>
+<p>The <code>bitwisemind-sam</code> model (<code>bitwisemind/sam_15000_clean_text_full_model</code>) is a specialized, fine-tuned iteration built upon the successes of the tugstugi architecture. "BitwiseMind" is a research team from BUET that participated in the <strong>DL Sprint 4.0</strong> competition, which specifically focused on improving Bengali long-form speech recognition in noisy environments.</p>
+<p>To achieve this, the team took the already-excellent <code>tugstugi</code> model and further fine-tuned it on a highly curated, custom dataset of approximately 15,000 clean, chunked Bengali audio segments. This research-grade fine-tuning specifically targeted the acoustic conditions, background noise, and speaker variability commonly found in real-world media (like our YouTube dataset). - <a href="https://arxiv.org/pdf/2605.08214">Bitwisemind Research Paper</a></p>
+<h3 id="ctranslate2-conversion_2">CTranslate2 Conversion</h3>
+<p>Because a <code>faster-whisper</code> compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:</p>
+<pre><code class="language-bash">ct2-transformers-converter --model bitwisemind/sam_15000_clean_text_full_model --output_dir models/bitwisemind_sam_ct2_float16 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
+</code></pre>
+<h3 id="evaluation-results_3">Evaluation Results</h3>
+<table>
+<thead>
+<tr>
+<th>Video</th>
+<th>Video Length</th>
+<th>Transcription Time</th>
+<th>WER %</th>
+<th>CER %</th>
+<th>Word Accuracy %</th>
+<th>GT Words</th>
+<th>Pred Words</th>
+<th>Correct Words</th>
+<th>Substitutions</th>
+<th>Deletions (Missed)</th>
+<th>Insertions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rain</td>
+<td>1m 54s</td>
+<td>3s</td>
+<td>16.74</td>
+<td>10.06</td>
+<td>83.72</td>
+<td>215</td>
+<td>203</td>
+<td>180</td>
+<td>22</td>
+<td>13</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Delhi Protest</td>
+<td>2m 14s</td>
+<td>2s</td>
+<td>16.67</td>
+<td>4.91</td>
+<td>86.02</td>
+<td>186</td>
+<td>184</td>
+<td>160</td>
+<td>19</td>
+<td>7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Subhendu CM</td>
+<td>4m 17s</td>
+<td>5s</td>
+<td>17.25</td>
+<td>11.71</td>
+<td>84.98</td>
+<td>626</td>
+<td>580</td>
+<td>532</td>
+<td>34</td>
+<td>60</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Dengue</td>
+<td>3m 3s</td>
+<td>4s</td>
+<td>14.84</td>
+<td>6.58</td>
+<td>86.26</td>
+<td>364</td>
+<td>362</td>
+<td>314</td>
+<td>44</td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Terrorist(Long)</td>
+<td>20m 3s</td>
+<td>23s</td>
+<td>19.63</td>
+<td>9.58</td>
+<td>83.18</td>
+<td>2527</td>
+<td>2477</td>
+<td>2102</td>
+<td>304</td>
+<td>121</td>
+<td>71</td>
+</tr>
+<tr>
+<td>Taslima Nasrin(Long)</td>
+<td>26m 19s</td>
+<td>25s</td>
+<td>18.99</td>
+<td>11.97</td>
+<td>83.48</td>
+<td>2670</td>
+<td>2517</td>
+<td>2229</td>
+<td>222</td>
+<td>219</td>
+<td>66</td>
+</tr>
+<tr>
+<td>Shamik(Long)</td>
+<td>20m 33s</td>
+<td>24s</td>
+<td>20.19</td>
+<td>8.96</td>
+<td>83.39</td>
+<td>2625</td>
+<td>2659</td>
+<td>2189</td>
+<td>376</td>
+<td>60</td>
+<td>94</td>
+</tr>
+<tr>
+<td>10am News(Long)</td>
+<td>21m 26s</td>
+<td>25s</td>
+<td>20.64</td>
+<td>9.9</td>
+<td>82.04</td>
+<td>2456</td>
+<td>2405</td>
+<td>2015</td>
+<td>324</td>
+<td>117</td>
+<td>66</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analysis</strong>: <code>bitwisemind-sam</code> is the clear winner for our pipeline. Thanks to the DL Sprint 4.0 fine-tuning, it achieved the lowest WERs (consistently under 20% for most videos, hitting an impressive <strong>14.84%</strong> on the Dengue video) and the highest Word Accuracies. It successfully mitigates deletions while maintaining a very low substitution rate, proving that a competition-winning base model (<code>tugstugi</code>) further fine-tuned on curated long-form audio (<code>bitwisemind</code>) yields the ultimate production-ready Bengali transcription system.</p>
+<p><br></p>
+<h1 id="9-final-model-selection">9. Final Model Selection</h1>
+<p>After extensive evaluation across diverse Bengali YouTube news clips (featuring varying background noise levels, different speaker accents, and complex vocabulary), we have definitively selected the <strong>Bitwisemind-SAM</strong> (<code>bitwisemind/sam_15000_clean_text_full_model</code>) model for our transcription pipeline.</p>
+<h3 id="why-bitwisemind-sam">Why Bitwisemind-SAM?</h3>
+<ol>
+<li><strong>Superior Accuracy</strong>: As demonstrated in the comparison table below, Bitwisemind-SAM consistently achieved the lowest Word Error Rate (WER) across every single video tested, mostly staying under the 20% mark.</li>
+<li><strong>Robustness to Deletions</strong>: Base models like <code>large-v3</code> dropped massive chunks of audio when faced with noisy YouTube conditions. Bitwisemind-SAM effectively mitigated these deletions.</li>
+<li><strong>Optimized for Real-world Audio</strong>: The DL Sprint 4.0 fine-tuning on 15,000 clean audio segments transformed the already strong <code>tugstugi</code> architecture into a production-ready model that rarely hallucinates or drops speech.</li>
+</ol>
+<h3 id="comprehensive-model-comparison">Comprehensive Model Comparison</h3>
+<p>The table below aggregates the Word Error Rate (WER %) of every tested model against all 5 evaluation videos. Lower WER indicates better performance.</p>
+<table>
+<thead>
+<tr>
+<th>Video</th>
+<th>Video Length</th>
+<th>Baseline (large-v3)</th>
+<th>Mozilla AI (large-v3-bn)</th>
+<th>Tugstugi</th>
+<th><strong>Bitwisemind-SAM</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rain</td>
+<td>1m 54s</td>
+<td>81.4%</td>
+<td>70.7%</td>
+<td>24.65%</td>
+<td><strong>16.74%</strong></td>
+</tr>
+<tr>
+<td>Delhi Protest</td>
+<td>2m 14s</td>
+<td>83.87%</td>
+<td>63.98%</td>
+<td>23.12%</td>
+<td><strong>16.67%</strong></td>
+</tr>
+<tr>
+<td>Subhendu CM</td>
+<td>4m 17s</td>
+<td>87.22%</td>
+<td>74.76%</td>
+<td>32.27%</td>
+<td><strong>17.25%</strong></td>
+</tr>
+<tr>
+<td>Dengue</td>
+<td>3m 3s</td>
+<td>86.54%</td>
+<td>70.05%</td>
+<td>31.59%</td>
+<td><strong>14.84%</strong></td>
+</tr>
+<tr>
+<td>Terrorist(Long)</td>
+<td>20m 3s</td>
+<td>83.46%</td>
+<td>69.57%</td>
+<td>31.58%</td>
+<td><strong>19.63%</strong></td>
+</tr>
+<tr>
+<td>Taslima Nasrin(Long)</td>
+<td>26m 19s</td>
+<td>78.28%</td>
+<td>61.91%</td>
+<td>30.11%</td>
+<td><strong>18.99%</strong></td>
+</tr>
+<tr>
+<td>Shamik(Long)</td>
+<td>20m 33s</td>
+<td>83.31%</td>
+<td>72.19%</td>
+<td>33.94%</td>
+<td><strong>20.19%</strong></td>
+</tr>
+<tr>
+<td>10am News(Long)</td>
+<td>21m 26s</td>
+<td>86.77%</td>
+<td>70.56%</td>
+<td>32.74%</td>
+<td><strong>20.64%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="computational-efficiency-flops-analysis">Computational Efficiency (FLOPs Analysis)</h3>
+<p>To further validate our selection, we profiled the theoretical Floating Point Operations (FLOPs) required to process a standard 30-second audio chunk. Because compute cost is dictated strictly by model architecture (parameter count and tensor dimensions), models fine-tuned on the same base architecture share mathematically identical theoretical FLOPs.</p>
+<p>The table below demonstrates that our selected Medium architecture not only achieves superior accuracy, but operates at roughly half the computational cost of the Large architecture, leading to vastly faster inference times and lower hardware requirements.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Scenario / Metric</th>
+<th style="text-align: left;">Whisper Large Architecture</th>
+<th style="text-align: left;">Whisper Medium Architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Associated Models</strong></td>
+<td style="text-align: left;"><code>large-v3</code>, <code>mozilla-ai/large-v3-bn</code></td>
+<td style="text-align: left;"><code>tugstugi</code>, <code>bitwisemind-sam</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Best Case (Silence - 1 token)</strong></td>
+<td style="text-align: left;">2.22 TFLOPS</td>
+<td style="text-align: left;">1.07 TFLOPS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Average Case (Normal Speech - 150 tokens)</strong></td>
+<td style="text-align: left;">2.46 TFLOPS</td>
+<td style="text-align: left;">1.19 TFLOPS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Worst Case (Hallucination - 448 tokens max)</strong></td>
+<td style="text-align: left;">2.94 TFLOPS</td>
+<td style="text-align: left;">1.43 TFLOPS</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Note: The Worst Case compute cost for the Medium architecture is significantly cheaper than the Best Case compute cost for the Large architecture.)</em></p>
+<h3 id="conclusion">Conclusion</h3>
+<p>The data clearly supports our decision. While OpenAI's default <code>large-v3</code> models are incredibly powerful for high-resource languages, zero-shot Bengali transcription requires heavy, specialized fine-tuning. The <strong>Bitwisemind-SAM</strong> model, converted into our optimized CTranslate2 <code>faster-whisper</code> format, delivers the speed, accuracy, and acoustic robustness required to deploy a highly reliable Bengali transcription service.</p>
+<p><br></p>
+<h1 id="10-final-pipeline">10. Final Pipeline</h1>
+<p>With our ideal model selected and the parameters tuned, we have established the final, highly-optimized Bengali ASR pipeline. The system is designed to take either a direct YouTube link or a local video file, handle all necessary preprocessing steps automatically, and output a clean, timestamped transcription.</p>
+<h3 id="pipeline-architecture">Pipeline Architecture</h3>
+<p>Below is a visualization of the data flow in our final pipeline:</p>
+<pre><code class="language-mermaid">graph TD
+    A1(&quot;YouTube Link&quot;) --&gt;|yt-dlp| B(&quot;ffmpeg Audio Extraction&quot;)
+    A2(&quot;Local Video File&quot;) --&gt;|Direct Input| B
+    B --&gt;|&quot;16kHz, Mono, PCM 16-bit WAV&quot;| C(&quot;Faster-Whisper Pipeline&quot;)
+    C --&gt;|Silero VAD Filtering| D(&quot;Bitwisemind-SAM CT2 Model&quot;)
+    D --&gt;|Semantic Chunking| E(&quot;Final Timestamped Transcription&quot;)
+    style B fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:white
+    style D fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:white
+    style E fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:white
+</code></pre>
+<h3 id="1-data-ingestion-preprocessing">1. Data Ingestion &amp; Preprocessing</h3>
+<p>The pipeline accepts two types of inputs:
+- <strong>YouTube Links</strong>: If a URL is provided, <code>yt-dlp</code> fetches the best available audio stream.
+- <strong>Local Videos</strong>: If a local file is provided, it skips the download step.</p>
+<p>Regardless of the source, the media is piped through <code>ffmpeg</code>. <code>ffmpeg</code> is strictly configured to output a <strong>16 kHz, Mono, PCM 16-bit WAV</strong> file. This normalizes all inputs to the exact format expected by Whisper's feature extractor, preventing any unexpected acoustic artifacts.</p>
+<h3 id="2-transcription-engine">2. Transcription Engine</h3>
+<p>The normalized audio is passed to the <code>BatchedInferencePipeline</code> utilizing our custom-compiled <strong>CTranslate2 Bitwisemind-SAM model</strong>. 
+- <strong>VAD Filtering</strong>: Before processing, the built-in Silero Voice Activity Detection (VAD) filters out prolonged silences and background noise segments. This is crucial for eliminating the hallucinations common in Whisper models.
+- <strong>Batch Processing</strong>: The audio is processed in batches (e.g., <code>batch_size=16</code>), maximizing GPU throughput and significantly accelerating the transcription of long videos.</p>
+<h3 id="3-chunking-output-formatting">3. Chunking &amp; Output Formatting</h3>
+<p>The raw word-level timestamps generated by the model are parsed by our custom <code>stream_chunks</code> algorithm. It aggregates words intelligently based on:
+- Grammatical boundaries (punctuation like <code>.</code> or <code>?</code>).
+- Temporal gaps (pauses longer than a specified <code>max_gap</code>).
+- Maximum word counts per chunk.</p>
+<p>The final result is a highly accurate, easily readable, and perfectly timed transcription ready for subtitle generation or downstream NLP tasks.</p>
+<p><br></p>
+<h1 id="11-deployment">11. Deployment</h1>
+<p>With the <code>bitwisemind-sam</code> model selected and the pipeline optimized, the system is wrapped into a full-stack web application located in the <code>VideoTranscription</code> directory. This allows end-users to easily interact with the model via a modern UI.</p>
+<h3 id="system-architecture">System Architecture</h3>
+<p>The application is split into a decoupled <strong>FastAPI</strong> backend and a <strong>React/Vite</strong> frontend.</p>
+<h4 id="1-backend-fastapi">1. Backend (FastAPI)</h4>
+<p>The backend is responsible for all heavy lifting: downloading, audio extraction, and GPU-accelerated transcription.
+- <strong>Model Initialization</strong>: On startup, the backend loads the <code>faster-whisper</code> CTranslate2 model into VRAM and runs a dummy audio file as a "warmup". This ensures the first actual user request doesn't suffer from initialization latency.
+- <strong>API Endpoints</strong>: Exposes <code>/api/transcribe/youtube</code> (for URLs) and <code>/api/transcribe/file</code> (for direct uploads).
+- <strong>Asynchronous Processing</strong>: Uses <code>asyncio</code> to run blocking I/O operations (<code>yt-dlp</code> and <code>ffmpeg</code>) without locking the main server thread.
+- <strong>Real-time Streaming</strong>: Instead of waiting for the entire video to be transcribed, the backend yields data using FastAPI's <code>StreamingResponse</code> (via <code>application/x-ndjson</code>). As soon as a chunk of audio is transcribed, it is pushed to the client immediately.
+- <strong>Caching Mechanism</strong>: Implements an in-memory hash cache. If a user requests a transcription for a video that was already processed, the backend instantly streams the cached text chunks instead of re-running the neural network.</p>
+<h4 id="2-frontend-react-vite">2. Frontend (React &amp; Vite)</h4>
+<p>The frontend provides a clean, responsive user interface.
+- Built with React and bundled via Vite for extremely fast hot-reloading and optimized production builds.
+- Connects to the FastAPI backend and consumes the NDJSON stream, dynamically updating the transcription text on the screen in real-time as the backend processes the audio.</p>
+<h3 id="running-the-application">Running the Application</h3>
+<p>To run the application locally for development:</p>
+<p><strong>1. Start the Backend server:</strong>
+Navigate to the <code>VideoTranscription/backend</code> directory and run:</p>
+<pre><code class="language-bash">python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+</code></pre>
+<p>This will start the FastAPI server on <code>http://localhost:8000</code>.</p>
+<p><strong>2. Start the Frontend dev server:</strong>
+Navigate to the <code>VideoTranscription/frontend</code> directory and run:</p>
+<pre><code class="language-bash">npm install
+npm run dev
+</code></pre>
+<p>This will start the Vite dev server (typically on <code>http://localhost:5173</code>).</p>
+<p><br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
