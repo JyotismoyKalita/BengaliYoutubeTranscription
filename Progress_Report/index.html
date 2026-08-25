@@ -900,15 +900,17 @@
 <h2 id="2-dataset-for-evaluating-the-model">2. Dataset for Evaluating the Model</h2>
 <p>To ensure our evaluation accurately reflects real-world performance, we curated a diverse dataset of Bengali YouTube videos. We focused on news clips as they contain clear speech, but still present challenges like background noise and varying reporter accents.</p>
 <h3 id="chosen-videos">Chosen Videos</h3>
-<p>We selected eight specific videos (4 short, 4 long) and mapped them in <code>dataset/metadata.csv</code>:
-* <strong>Rain</strong> (Short, ~2 mins)<br />
-<em> </em><em>Delhi Protest</em><em> (Short, ~2 mins)<br />
-</em> <strong>Subhendu CM</strong> (Short, ~4 mins)<br />
-<em> </em><em>Dengue</em><em> (Short, ~3 mins)<br />
-</em> <strong>Terrorist(Long)</strong> (Long, ~20 mins)<br />
-<em> </em><em>Taslima Nasrin(Long)</em><em> (Long, ~26 mins)<br />
-</em> <strong>Shamik(Long)</strong> (Long, ~20 mins)<br />
-<em> </em><em>10am News(Long)</em>* (Long, ~21 mins)  </p>
+<p>We selected eight specific videos (4 short, 4 long) and mapped them in <code>dataset/metadata.csv</code>:</p>
+<ul>
+<li><strong>Rain</strong> (Short, ~2 mins)  </li>
+<li><strong>Delhi Protest</strong> (Short, ~2 mins)  </li>
+<li><strong>Subhendu CM</strong> (Short, ~4 mins)  </li>
+<li><strong>Dengue</strong> (Short, ~3 mins)  </li>
+<li><strong>Terrorist(Long)</strong> (Long, ~20 mins)  </li>
+<li><strong>Taslima Nasrin(Long)</strong> (Long, ~26 mins)  </li>
+<li><strong>Shamik(Long)</strong> (Long, ~20 mins)  </li>
+<li><strong>10am News(Long)</strong> (Long, ~21 mins)  </li>
+</ul>
 <h3 id="audio-extraction-via-yt-dlp-and-ffmpeg">Audio Extraction via <code>yt-dlp</code> and <code>ffmpeg</code></h3>
 <p>To process these videos uniformly, we utilized <code>yt-dlp</code> for downloading and <code>ffmpeg</code> for audio extraction. 
 We strictly enforce a consistent audio format: <strong>16 kHz, Mono, PCM 16-bit WAV</strong>. This format is universally required by Whisper-based models for optimal processing.</p>
@@ -965,9 +967,11 @@ We strictly enforce a consistent audio format: <strong>16 kHz, Mono, PCM 16-bit 
 <li><strong>Word Accuracy</strong>: The percentage of words correctly predicted.</li>
 </ul>
 <h3 id="pre-processing-for-bengali">Pre-processing for Bengali</h3>
-<p>Before computing metrics, we clean both the ground truth and predicted text by:
-- Removing newlines and excess whitespace.
-- Stripping punctuation, including the Bengali danda (<code>।</code>).</p>
+<p>Before computing metrics, we clean both the ground truth and predicted text by:</p>
+<ul>
+<li>Removing newlines and excess whitespace.</li>
+<li>Stripping punctuation, including the Bengali danda (<code>।</code>).</li>
+</ul>
 <p>The metrics are calculated across all 5 test videos for each model to produce a comprehensive benchmark.</p>
 <p><br></p>
 <h2 id="5-baseline-model-faster-whisper-large-v3">5. Baseline Model: faster-whisper-large-v3</h2>
