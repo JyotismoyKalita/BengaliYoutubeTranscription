@@ -4,8 +4,9 @@
 
 This repository contains an end-to-end pipeline for downloading Bengali news clips from YouTube, extracting audio, running highly-optimized Automatic Speech Recognition (ASR) using `faster-whisper`, generating timestamped transcriptions, and serving them via a modern web interface.  
 
-[Progress_Report_Final.pdf](/Progress_Report_Final.pdf) - contains the detailed progress report of the project.  
-[Progress_Report_Notion](https://app.notion.com/p/Timestamped-Transcription-of-Bengali-YouTube-Videos-3af6dec2219380999e1fc52130a3e9f3) - Notion Link for the same progress report.
+[Progress_Report_Final.pdf](Progress_Report_Final.pdf) - PDF version of the detailed progress report.  
+[Progress_Report_Notion](https://app.notion.com/p/Timestamped-Transcription-of-Bengali-YouTube-Videos-3af6dec2219380999e1fc52130a3e9f3) - Notion Link for the same progress report.  
+👉 **[Read the Full Progress Report Here](Progress%20Report/1%20Introduction.md)** - Browse the comprehensive 11-part progress report directly on this site!
 
 ## 🎥 Project Demonstration
 
@@ -45,7 +46,7 @@ This will populate your `dataset/` directory according to the `dataset/metadata.
 This pipeline relies on heavily optimized `faster-whisper` (CTranslate2) formats for blazing-fast inference. While the baseline `large-v3` model downloads automatically, our specialized Bengali fine-tuned models must be compiled manually.
 
 Follow the step-by-step instructions in the dedicated guide:
-👉 **[Model_Guide.md](/Model_Guide.md)**
+👉 **[Model_Guide.md](Model_Guide.md)**
 
 ---
 
