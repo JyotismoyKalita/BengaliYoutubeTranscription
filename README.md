@@ -5,7 +5,8 @@
 This repository contains an end-to-end pipeline for downloading Bengali news clips from YouTube, extracting audio, running highly-optimized Automatic Speech Recognition (ASR) using `faster-whisper`, generating timestamped transcriptions, and serving them via a modern web interface.  
 
 [Progress_Report_Final.pdf](/Progress_Report_Final.pdf) - contains the detailed progress report of the project.  
-[Progress_Report_Notion](https://app.notion.com/p/Timestamped-Transcription-of-Bengali-YouTube-Videos-3af6dec2219380999e1fc52130a3e9f3) - Notion Link for the same progress report.
+[Progress_Report_Notion](https://app.notion.com/p/Timestamped-Transcription-of-Bengali-YouTube-Videos-3af6dec2219380999e1fc52130a3e9f3) - Notion Link for the same progress report.  
+[Project Demonstration](https://drive.google.com/file/d/1HlcKh4rmXTU8Jsg_CusCg9harz3jmoe7/view?usp=sharing) -  Google Drive Link for the Project Demonstration and Explanation video
 
 ---
 
