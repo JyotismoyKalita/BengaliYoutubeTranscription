@@ -1,5 +1,7 @@
 site_name: Bengali YouTube Transcription
 site_description: An automated, low-latency Bengali speech-to-text pipeline evaluating multiple fine-tuned Whisper architectures.
+repo_name: JyotismoyKalita/BengaliYoutubeTranscription
+repo_url: https://github.com/JyotismoyKalita/BengaliYoutubeTranscription
 theme:
   name: material
   features:
