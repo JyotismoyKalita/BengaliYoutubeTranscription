@@ -18,15 +18,4 @@ theme:
 nav:
   - Home: index.md
   - Model Compilation Guide: Model_Guide.md
-  - Detailed Progress Report:
-    - Introduction: 'Progress Report/1 Introduction.md'
-    - Dataset: 'Progress Report/2 Dataset for Evaluating the Model.md'
-    - Faster-Whisper Architecture: 'Progress Report/3 Faster-Whisper Architecture.md'
-    - Evaluation Methodology: 'Progress Report/4 Evaluation Methodology.md'
-    - Baseline Model: 'Progress Report/5 Baseline Model faster-whisper-large-v3.md'
-    - Mozilla AI Model: 'Progress Report/6 Mozilla AI Model faster-whisper-large-v3-bn.md'
-    - Tugstugi Model: 'Progress Report/7 Tugstugi Model.md'
-    - Bitwisemind-SAM Model: 'Progress Report/8 Bitwisemind-SAM Model.md'
-    - Final Model Selection: 'Progress Report/9 Final Model Selection.md'
-    - Final Pipeline: 'Progress Report/10 Final Pipeline.md'
-    - Deployment: 'Progress Report/11 Deployment.md'
+  - Detailed Progress Report: Progress_Report.md

@@ -1,10 +1,8 @@
 # Timestamped Transcription of Bengali YouTube Videos
 
-*This project was developed during an internship at EICT IIT Guwahati under the guidance of Prithvijit Guha Sir.*
+*This project was developed during an internship at EICT IIT Guwahati under the guidance of Prithvijit Guha Sir.*  
 
-This repository contains an end-to-end pipeline for downloading Bengali news clips from YouTube, extracting audio, running highly-optimized Automatic Speech Recognition (ASR) using `faster-whisper`, generating timestamped transcriptions, and serving them via a modern web interface.    
-
-**[Read the Full Progress Report Here](Progress%20Report/1%20Introduction.md)** - Browse the comprehensive Progress Report within this site  
+**[Read the Full Report and Explanations Here](Progress_Report.md)** - Browse the comprehensive reports and explanations of the project  
 
 **[View Source Code on GitHub](https://github.com/JyotismoyKalita/BengaliYoutubeTranscription)** - Access the complete repository, scripts, and datasets.
 
@@ -83,34 +81,6 @@ cd deployment/frontend
 npm install
 npm run dev
 ```
-
----
-
-## Performance & Evaluation
-
-### Final Model Selection (Word Error Rate %)
-Bitwisemind-SAM was selected as our final production model due to its massive superiority in Bengali zero-shot transcription compared to standard Large models.
-
-| Video | Video Length | Baseline (large-v3) | Mozilla AI (large-v3-bn) | Tugstugi | **Bitwisemind-SAM** |
-|--|--|--|--|--|--|
-| Rain | 1m 54s | 81.4% | 70.7% | 24.65% | **16.74%** |
-| Delhi Protest | 2m 14s | 83.87% | 63.98% | 23.12% | **16.67%** |
-| Subhendu CM | 4m 17s | 87.22% | 74.76% | 32.27% | **17.25%** |
-| Dengue | 3m 3s | 86.54% | 70.05% | 31.59% | **14.84%** |
-| Terrorist(Long) | 20m 3s | 83.46% | 69.57% | 31.58% | **19.63%** |
-| Taslima Nasrin(Long) | 26m 19s | 78.28% | 61.91% | 30.11% | **18.99%** |
-| Shamik(Long) | 20m 33s | 83.31% | 72.19% | 33.94% | **20.19%** |
-| 10am News(Long) | 21m 26s | 86.77% | 70.56% | 32.74% | **20.64%** |
-
-### Computational Efficiency (FLOPs Analysis)
-The Medium architecture (Bitwisemind-SAM) not only achieves vastly superior accuracy but operates at less than half the computational cost of the Large baseline models.
-
-| Scenario / Metric | Whisper Large Architecture | Whisper Medium Architecture |
-| :--- | :--- | :--- |
-| **Associated Models** | `large-v3`, `mozilla-ai/large-v3-bn` | `tugstugi`, `bitwisemind-sam` |
-| **Best Case (Silence - 1 token)** | 2.22 TFLOPS | 1.07 TFLOPS |
-| **Average Case (Normal Speech - 150 tokens)** | 2.46 TFLOPS | 1.19 TFLOPS |
-| **Worst Case (Hallucination - 448 tokens max)** | 2.94 TFLOPS | 1.43 TFLOPS |
 
 ---
 
