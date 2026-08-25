@@ -21,14 +21,14 @@ To ensure our evaluation accurately reflects real-world performance, we curated 
 ### Chosen Videos
 
 We selected eight specific videos (4 short, 4 long) and mapped them in `dataset/metadata.csv`:
-- **Rain** (Short, ~2 mins)
-- **Delhi Protest** (Short, ~2 mins)
-- **Subhendu CM** (Short, ~4 mins)
-- **Dengue** (Short, ~3 mins)
-- **Terrorist(Long)** (Long, ~20 mins)
-- **Taslima Nasrin(Long)** (Long, ~26 mins)
-- **Shamik(Long)** (Long, ~20 mins)
-- **10am News(Long)** (Long, ~21 mins)
+* **Rain** (Short, ~2 mins)  
+* **Delhi Protest** (Short, ~2 mins)  
+* **Subhendu CM** (Short, ~4 mins)  
+* **Dengue** (Short, ~3 mins)  
+* **Terrorist(Long)** (Long, ~20 mins)  
+* **Taslima Nasrin(Long)** (Long, ~26 mins)  
+* **Shamik(Long)** (Long, ~20 mins)  
+* **10am News(Long)** (Long, ~21 mins)  
 
 ### Audio Extraction via `yt-dlp` and `ffmpeg`
 
