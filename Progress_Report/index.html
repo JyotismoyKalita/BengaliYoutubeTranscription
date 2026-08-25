@@ -422,24 +422,24 @@
 <h3 id="audio-extraction-via-yt-dlp-and-ffmpeg">Audio Extraction via <code>yt-dlp</code> and <code>ffmpeg</code></h3>
 <p>To process these videos uniformly, we utilized <code>yt-dlp</code> for downloading and <code>ffmpeg</code> for audio extraction. 
 We strictly enforce a consistent audio format: <strong>16 kHz, Mono, PCM 16-bit WAV</strong>. This format is universally required by Whisper-based models for optimal processing.</p>
-<pre><code class="language-python">import subprocess
-import yt_dlp
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yt_dlp</span>
 
-def download_and_extract_audio(url, output_stem):
-    opts = {
-        &quot;format&quot;: &quot;bestaudio/best&quot;,
-        &quot;outtmpl&quot;: output_stem,
-        &quot;postprocessors&quot;: [{&quot;key&quot;: &quot;FFmpegExtractAudio&quot;, &quot;preferredcodec&quot;: &quot;wav&quot;}],
-    }
-    with yt_dlp.YoutubeDL(opts) as ydl:
-        ydl.download([url])
+<span class="k">def</span><span class="w"> </span><span class="nf">download_and_extract_audio</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">output_stem</span><span class="p">):</span>
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;bestaudio/best&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;outtmpl&quot;</span><span class="p">:</span> <span class="n">output_stem</span><span class="p">,</span>
+        <span class="s2">&quot;postprocessors&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;FFmpegExtractAudio&quot;</span><span class="p">,</span> <span class="s2">&quot;preferredcodec&quot;</span><span class="p">:</span> <span class="s2">&quot;wav&quot;</span><span class="p">}],</span>
+    <span class="p">}</span>
+    <span class="k">with</span> <span class="n">yt_dlp</span><span class="o">.</span><span class="n">YoutubeDL</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span> <span class="k">as</span> <span class="n">ydl</span><span class="p">:</span>
+        <span class="n">ydl</span><span class="o">.</span><span class="n">download</span><span class="p">([</span><span class="n">url</span><span class="p">])</span>
 
-    subprocess.run([
-        &quot;ffmpeg&quot;, &quot;-i&quot;, f&quot;{output_stem}.wav&quot;,
-        &quot;-vn&quot;, &quot;-acodec&quot;, &quot;pcm_s16le&quot;, &quot;-ar&quot;, &quot;16000&quot;, &quot;-ac&quot;, &quot;1&quot;, 
-        f&quot;{output_stem}_16k.wav&quot;
-    ], check=True)
-</code></pre>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span>
+        <span class="s2">&quot;ffmpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_stem</span><span class="si">}</span><span class="s2">.wav&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-vn&quot;</span><span class="p">,</span> <span class="s2">&quot;-acodec&quot;</span><span class="p">,</span> <span class="s2">&quot;pcm_s16le&quot;</span><span class="p">,</span> <span class="s2">&quot;-ar&quot;</span><span class="p">,</span> <span class="s2">&quot;16000&quot;</span><span class="p">,</span> <span class="s2">&quot;-ac&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> 
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_stem</span><span class="si">}</span><span class="s2">_16k.wav&quot;</span>
+    <span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 <p><br></p>
 <h1 id="3-faster-whisper-architecture">3. Faster-Whisper Architecture</h1>
 <p>Throughout this project, we prioritize the <strong>faster-whisper</strong> implementation of OpenAI's Whisper models over the standard HuggingFace/OpenAI versions. </p>
@@ -455,16 +455,16 @@ def download_and_extract_audio(url, output_stem):
 <li>cuDNN 9 for CUDA 12  </li>
 </ul>
 <p>The latest versions of ctranslate2 only support CUDA 12 and cuDNN 9. Hence correct <em>.dll</em>s were imported manually in this project.</p>
-<pre><code class="language-python">import ctypes
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
 
-for dll in [
-    r&quot;D:\Python\ytt\Lib\site-packages\nvidia\cublas\bin\cublas64_12.dll&quot;,
-    r&quot;D:\Python\ytt\Lib\site-packages\nvidia\cudnn\bin\cudnn64_9.dll&quot;,
-]:
-    ctypes.CDLL(dll)
+<span class="k">for</span> <span class="n">dll</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s2">&quot;D:\Python\ytt\Lib\site-packages\nvidia\cublas\bin\cublas64_12.dll&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;D:\Python\ytt\Lib\site-packages\nvidia\cudnn\bin\cudnn64_9.dll&quot;</span><span class="p">,</span>
+<span class="p">]:</span>
+    <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">dll</span><span class="p">)</span>
 
-print(&quot;CUDA DLLs loaded&quot;)
-</code></pre>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CUDA DLLs loaded&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p><br></p>
 <h1 id="4-evaluation-methodology">4. Evaluation Methodology</h1>
 <p>To objectively evaluate the transcription quality, we use the industry-standard <strong>JIWER</strong> library.</p>
@@ -623,8 +623,8 @@ print(&quot;CUDA DLLs loaded&quot;)
 <p>While this model benefits from targeted Bengali training data, community reports indicate that generalized fine-tunes still struggle with highly noisy, real-world audio like YouTube news broadcasts compared to models trained explicitly on competition-grade regional datasets.</p>
 <h3 id="ctranslate2-conversion">CTranslate2 Conversion</h3>
 <p>Because a <code>faster-whisper</code> compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:</p>
-<pre><code class="language-bash">ct2-transformers-converter --model mozilla-ai/whisper-large-v3-bn --output_dir models/whisper-large-v3-bn-ct2 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
-</code></pre>
+<div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>mozilla-ai/whisper-large-v3-bn<span class="w"> </span>--output_dir<span class="w"> </span>models/whisper-large-v3-bn-ct2<span class="w"> </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span>--quantization<span class="w"> </span>float16
+</code></pre></div>
 <h3 id="evaluation-results_1">Evaluation Results</h3>
 <table>
 <thead>
@@ -765,8 +765,8 @@ print(&quot;CUDA DLLs loaded&quot;)
 <p>Unlike the generic large-v3 models, this model is built on the <code>medium</code> architecture but features a <strong>custom 12k vocabulary tokenizer</strong> specifically optimized for Bengali. Furthermore, it was heavily trained on diverse regional datasets including OpenSLR, Kathbath, and pseudo-labeled YouTube data. Because of this specialized architecture and training corpus, it is widely cited as the baseline foundation for state-of-the-art Bengali transcription.</p>
 <h3 id="ctranslate2-conversion_1">CTranslate2 Conversion</h3>
 <p>Because a <code>faster-whisper</code> compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:</p>
-<pre><code class="language-bash">ct2-transformers-converter --model tugstugi/bengaliai-regional-asr_whisper-medium --output_dir models/tugstugi_ct2_float16 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
-</code></pre>
+<div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>tugstugi/bengaliai-regional-asr_whisper-medium<span class="w"> </span>--output_dir<span class="w"> </span>models/tugstugi_ct2_float16<span class="w"> </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span>--quantization<span class="w"> </span>float16
+</code></pre></div>
 <h3 id="evaluation-results_2">Evaluation Results</h3>
 <table>
 <thead>
@@ -907,8 +907,8 @@ print(&quot;CUDA DLLs loaded&quot;)
 <p>To achieve this, the team took the already-excellent <code>tugstugi</code> model and further fine-tuned it on a highly curated, custom dataset of approximately 15,000 clean, chunked Bengali audio segments. This research-grade fine-tuning specifically targeted the acoustic conditions, background noise, and speaker variability commonly found in real-world media (like our YouTube dataset). - <a href="https://arxiv.org/pdf/2605.08214">Bitwisemind Research Paper</a></p>
 <h3 id="ctranslate2-conversion_2">CTranslate2 Conversion</h3>
 <p>Because a <code>faster-whisper</code> compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:</p>
-<pre><code class="language-bash">ct2-transformers-converter --model bitwisemind/sam_15000_clean_text_full_model --output_dir models/bitwisemind_sam_ct2_float16 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
-</code></pre>
+<div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>bitwisemind/sam_15000_clean_text_full_model<span class="w"> </span>--output_dir<span class="w"> </span>models/bitwisemind_sam_ct2_float16<span class="w"> </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span>--quantization<span class="w"> </span>float16
+</code></pre></div>
 <h3 id="evaluation-results_3">Evaluation Results</h3>
 <table>
 <thead>
@@ -1174,16 +1174,15 @@ print(&quot;CUDA DLLs loaded&quot;)
 <p>With our ideal model selected and the parameters tuned, we have established the final, highly-optimized Bengali ASR pipeline. The system is designed to take either a direct YouTube link or a local video file, handle all necessary preprocessing steps automatically, and output a clean, timestamped transcription.</p>
 <h3 id="pipeline-architecture">Pipeline Architecture</h3>
 <p>Below is a visualization of the data flow in our final pipeline:</p>
-<pre><code class="language-mermaid">graph TD
-    A1(&quot;YouTube Link&quot;) --&gt;|yt-dlp| B(&quot;ffmpeg Audio Extraction&quot;)
-    A2(&quot;Local Video File&quot;) --&gt;|Direct Input| B
-    B --&gt;|&quot;16kHz, Mono, PCM 16-bit WAV&quot;| C(&quot;Faster-Whisper Pipeline&quot;)
-    C --&gt;|Silero VAD Filtering| D(&quot;Bitwisemind-SAM CT2 Model&quot;)
-    D --&gt;|Semantic Chunking| E(&quot;Final Timestamped Transcription&quot;)
+<pre class="mermaid"><code>graph TD
+    A1("YouTube Link") --&gt;|yt-dlp| B("ffmpeg Audio Extraction")
+    A2("Local Video File") --&gt;|Direct Input| B
+    B --&gt;|"16kHz, Mono, PCM 16-bit WAV"| C("Faster-Whisper Pipeline")
+    C --&gt;|Silero VAD Filtering| D("Bitwisemind-SAM CT2 Model")
+    D --&gt;|Semantic Chunking| E("Final Timestamped Transcription")
     style B fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:white
     style D fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:white
-    style E fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:white
-</code></pre>
+    style E fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:white</code></pre>
 <h3 id="1-data-ingestion-preprocessing">1. Data Ingestion &amp; Preprocessing</h3>
 <p>The pipeline accepts two types of inputs:
 - <strong>YouTube Links</strong>: If a URL is provided, <code>yt-dlp</code> fetches the best available audio stream.
@@ -1218,16 +1217,16 @@ print(&quot;CUDA DLLs loaded&quot;)
 <h3 id="running-the-application">Running the Application</h3>
 <p>To run the application locally for development:</p>
 <p><strong>1. Start the Backend server:</strong>
-Navigate to the <code>VideoTranscription/backend</code> directory and run:</p>
-<pre><code class="language-bash">python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-</code></pre>
-<p>This will start the FastAPI server on <code>http://localhost:8000</code>.</p>
+Navigate to the <code>VideoTranscription/backend</code> directory and run:
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>uvicorn<span class="w"> </span>main:app<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--reload
+</code></pre></div>
+This will start the FastAPI server on <code>http://localhost:8000</code>.</p>
 <p><strong>2. Start the Frontend dev server:</strong>
-Navigate to the <code>VideoTranscription/frontend</code> directory and run:</p>
-<pre><code class="language-bash">npm install
-npm run dev
-</code></pre>
-<p>This will start the Vite dev server (typically on <code>http://localhost:5173</code>).</p>
+Navigate to the <code>VideoTranscription/frontend</code> directory and run:
+<div class="highlight"><pre><span></span><code>npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div>
+This will start the Vite dev server (typically on <code>http://localhost:5173</code>).</p>
 <p><br></p>
 
 

@@ -599,78 +599,78 @@
 <h2 id="1-mozilla-ai-large-v3-bn">1. Mozilla AI (large-v3-bn)</h2>
 <p>This is the large-v3 model fine-tuned by Mozilla AI.</p>
 <h3 id="step-1-download-the-model">Step 1: Download the Model</h3>
-<pre><code class="language-python">from huggingface_hub import snapshot_download
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">snapshot_download</span>
 
-snapshot_download(
-    repo_id=&quot;mozilla-ai/whisper-large-v3-bn&quot;, 
-    local_dir=&quot;./models/mozilla_large_source&quot;
-)
-print(&quot;Download finished!&quot;)
-</code></pre>
+<span class="n">snapshot_download</span><span class="p">(</span>
+    <span class="n">repo_id</span><span class="o">=</span><span class="s2">&quot;mozilla-ai/whisper-large-v3-bn&quot;</span><span class="p">,</span> 
+    <span class="n">local_dir</span><span class="o">=</span><span class="s2">&quot;./models/mozilla_large_source&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download finished!&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="step-2-compile-the-unified-tokenizer">Step 2: Compile the Unified Tokenizer</h3>
-<p>Older Whisper repositories often lack a unified <code>tokenizer.json</code>. We generate it from legacy configs:</p>
-<pre><code class="language-python">from transformers import WhisperTokenizerFast
+<p>Older Whisper repositories often lack a unified <code>tokenizer.json</code>. We generate it from legacy configs:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WhisperTokenizerFast</span>
 
-tokenizer = WhisperTokenizerFast.from_pretrained(&quot;./models/mozilla_large_source&quot;)
-tokenizer.save_pretrained(&quot;./models/mozilla_large_source&quot;)
-print(&quot;Unified tokenizer.json created successfully!&quot;)
-</code></pre>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">WhisperTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/mozilla_large_source&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/mozilla_large_source&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unified tokenizer.json created successfully!&quot;</span><span class="p">)</span>
+</code></pre></div></p>
 <h3 id="step-3-convert-to-ctranslate2-format">Step 3: Convert to CTranslate2 Format</h3>
-<pre><code class="language-bash">ct2-transformers-converter --model ./models/mozilla_large_source \
-    --output_dir ./models/whisper-large-v3-bn-ct2 \
-    --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json \
-    --quantization float16
-</code></pre>
+<div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>./models/mozilla_large_source<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_dir<span class="w"> </span>./models/whisper-large-v3-bn-ct2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--quantization<span class="w"> </span>float16
+</code></pre></div>
 <hr />
 <h2 id="2-tugstugi-medium">2. Tugstugi (Medium)</h2>
 <p>This is the BengaliAI competition winner.</p>
 <h3 id="step-1-download-the-model_1">Step 1: Download the Model</h3>
-<pre><code class="language-python">from huggingface_hub import snapshot_download
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">snapshot_download</span>
 
-snapshot_download(
-    repo_id=&quot;tugstugi/bengaliai-regional-asr_whisper-medium&quot;, 
-    local_dir=&quot;./models/tugstugi_source&quot;
-)
-print(&quot;Download finished!&quot;)
-</code></pre>
+<span class="n">snapshot_download</span><span class="p">(</span>
+    <span class="n">repo_id</span><span class="o">=</span><span class="s2">&quot;tugstugi/bengaliai-regional-asr_whisper-medium&quot;</span><span class="p">,</span> 
+    <span class="n">local_dir</span><span class="o">=</span><span class="s2">&quot;./models/tugstugi_source&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download finished!&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="step-2-compile-the-unified-tokenizer_1">Step 2: Compile the Unified Tokenizer</h3>
-<pre><code class="language-python">from transformers import WhisperTokenizerFast
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WhisperTokenizerFast</span>
 
-tokenizer = WhisperTokenizerFast.from_pretrained(&quot;./models/tugstugi_source&quot;)
-tokenizer.save_pretrained(&quot;./models/tugstugi_source&quot;)
-print(&quot;Unified tokenizer.json created successfully!&quot;)
-</code></pre>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">WhisperTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/tugstugi_source&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/tugstugi_source&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unified tokenizer.json created successfully!&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="step-3-convert-to-ctranslate2-format_1">Step 3: Convert to CTranslate2 Format</h3>
-<pre><code class="language-bash">ct2-transformers-converter --model ./models/tugstugi_source \
-    --output_dir ./models/tugstugi_ct2_float16 \
-    --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json \
-    --quantization float16
-</code></pre>
+<div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>./models/tugstugi_source<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_dir<span class="w"> </span>./models/tugstugi_ct2_float16<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--quantization<span class="w"> </span>float16
+</code></pre></div>
 <hr />
 <h2 id="3-bitwisemind-sam-medium-the-selected-final-model">3. Bitwisemind-SAM (Medium - The Selected Final Model)</h2>
 <p>This is the DL Sprint 4.0 fine-tuned model by Bitwisemind.</p>
 <h3 id="step-1-download-the-model_2">Step 1: Download the Model</h3>
-<pre><code class="language-python">from huggingface_hub import snapshot_download
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">snapshot_download</span>
 
-snapshot_download(
-    repo_id=&quot;bitwisemind/sam_15000_clean_text_full_model&quot;, 
-    local_dir=&quot;./models/bitwisemind_sam&quot;
-)
-print(&quot;Download finished!&quot;)
-</code></pre>
+<span class="n">snapshot_download</span><span class="p">(</span>
+    <span class="n">repo_id</span><span class="o">=</span><span class="s2">&quot;bitwisemind/sam_15000_clean_text_full_model&quot;</span><span class="p">,</span> 
+    <span class="n">local_dir</span><span class="o">=</span><span class="s2">&quot;./models/bitwisemind_sam&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download finished!&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="step-2-compile-the-unified-tokenizer_2">Step 2: Compile the Unified Tokenizer</h3>
-<pre><code class="language-python">from transformers import WhisperTokenizerFast
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WhisperTokenizerFast</span>
 
-tokenizer = WhisperTokenizerFast.from_pretrained(&quot;./models/bitwisemind_sam&quot;)
-tokenizer.save_pretrained(&quot;./models/bitwisemind_sam&quot;)
-print(&quot;Unified tokenizer.json created successfully!&quot;)
-</code></pre>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">WhisperTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/bitwisemind_sam&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/bitwisemind_sam&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unified tokenizer.json created successfully!&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="step-3-convert-to-ctranslate2-format_2">Step 3: Convert to CTranslate2 Format</h3>
-<pre><code class="language-bash">ct2-transformers-converter --model ./models/bitwisemind_sam \
-    --output_dir ./models/bitwisemind_sam_ct2_float16 \
-    --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json \
-    --quantization float16
-</code></pre>
+<div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>./models/bitwisemind_sam<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_dir<span class="w"> </span>./models/bitwisemind_sam_ct2_float16<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--quantization<span class="w"> </span>float16
+</code></pre></div>
 
 
 
