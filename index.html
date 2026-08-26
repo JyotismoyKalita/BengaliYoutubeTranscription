@@ -578,12 +578,14 @@ python<span class="w"> </span>download_dataset.py
 <h2 id="running-experiments">Running Experiments</h2>
 <p>The core evaluation logic and transcription pipeline are contained in the Jupyter Notebook:
 <strong><code>experiment.ipynb</code></strong></p>
-<p>To run the experiments sequentially:
-1. <strong>Load DLLs:</strong> Run the initial DLL loading cell (required for CTranslate2 on Windows).
-2. <strong>Load Helpers:</strong> Run the transcription helper function cell to initialize the processing logic.
-3. <strong>Run Models:</strong> Under each specific model section:
-   * First, run the <strong>Model Loading</strong> cell to initialize the model in VRAM.
-   * Then, run the <strong>Transcription</strong> cell to process the dataset.</p>
+<p>To run the experiments sequentially:</p>
+<ol>
+<li><strong>Load DLLs:</strong> Run the initial DLL loading cell (required for CTranslate2 on Windows).</li>
+<li><strong>Load Helpers:</strong> Run the transcription helper function cell to initialize the processing logic.</li>
+<li><strong>Run Models:</strong> Under each specific model section:</li>
+<li>First, run the <strong>Model Loading</strong> cell to initialize the model in VRAM.</li>
+<li>Then, run the <strong>Transcription</strong> cell to process the dataset.</li>
+</ol>
 <p><em>Note: All output transcriptions and evaluation metrics are saved to the <code>backup/bn1/Outputs</code> folder during experimental runs.</em></p>
 <hr />
 <h2 id="web-app-deployment">Web App Deployment</h2>
