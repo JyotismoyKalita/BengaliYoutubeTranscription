@@ -14,8 +14,6 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../Progress_Report/">
-      
       
         
       
@@ -25,7 +23,7 @@
     
     
       
-        <title>Model Compilation Guide - Bengali YouTube Transcription</title>
+        <title>Setup & Installation Guide - Bengali YouTube Transcription</title>
       
     
     
@@ -74,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-download-and-compile-models-for-faster-whisper" class="md-skip">
+        <a href="#developer-setup-installation-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Model Compilation Guide
+              Setup & Installation Guide
             
           </span>
         </div>
@@ -199,7 +197,7 @@
   
     
   
-  Home
+  Project Report
 
       </a>
     </li>
@@ -220,26 +218,7 @@
   
     
   
-  Model Compilation Guide
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../Progress_Report/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Detailed Project Explanations
+  Setup & Installation Guide
 
       </a>
     </li>
@@ -307,7 +286,7 @@
   <span class="md-ellipsis">
     
   
-    Home
+    Project Report
   
 
     
@@ -343,7 +322,7 @@
   <span class="md-ellipsis">
     
   
-    Model Compilation Guide
+    Setup & Installation Guide
   
 
     
@@ -361,7 +340,7 @@
   <span class="md-ellipsis">
     
   
-    Model Compilation Guide
+    Setup & Installation Guide
   
 
     
@@ -387,6 +366,40 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset Preparation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Compilation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Compilation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#1-mozilla-ai-large-v3-bn" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -435,8 +448,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#2-tugstugi-medium" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -485,8 +498,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#3-bitwisemind-sam-medium-the-selected-final-model" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -535,38 +548,71 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Experiments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-app-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web App Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#author" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Author
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License
+      
+    </span>
+  </a>
+  
+</li>
       
     </ul>
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Progress_Report/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Detailed Project Explanations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -591,14 +637,30 @@
   
 
 
-<h1 id="how-to-download-and-compile-models-for-faster-whisper">How to Download and Compile Models for faster-whisper</h1>
+<h1 id="developer-setup-installation-guide">Developer Setup &amp; Installation Guide</h1>
+<h2 id="environment-setup">Environment Setup</h2>
+<p>The project requires <strong>Python 3.11</strong>. Once your Python environment is ready, install the required dependencies:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+.<span class="se">\v</span>env<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1<span class="w">    </span><span class="c1"># Windows (PowerShell)</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<hr />
+<h2 id="dataset-preparation">Dataset Preparation</h2>
+<p>To download the selected YouTube videos and extract the required 16kHz mono <code>.wav</code> audio files automatically, run the dataset downloader script:</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\v</span>env<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+python<span class="w"> </span>download_dataset.py
+</code></pre></div>
+<p>This will populate your <code>dataset/</code> directory according to the <code>dataset/metadata.csv</code> mapping.</p>
+<hr />
+<h2 id="model-compilation">Model Compilation</h2>
+<p>This pipeline relies on heavily optimized <code>faster-whisper</code> (CTranslate2) formats for blazing-fast inference. While the baseline <code>large-v3</code> model downloads automatically, our specialized Bengali fine-tuned models must be compiled manually.</p>
 <p>In our pipeline, the baseline model (<code>large-v3</code>) is officially supported by the <code>faster-whisper</code> library and is downloaded automatically at runtime. </p>
 <p>However, the three specialized Bengali fine-tuned models used in this project are not natively available in the required CTranslate2 (<code>ct2</code>) format. We must manually download them from HuggingFace, fix their tokenizers, and compile them into <code>ct2</code> format.</p>
 <p>Below are the exact instructions to compile all three fine-tuned models.</p>
 <hr />
-<h2 id="1-mozilla-ai-large-v3-bn">1. Mozilla AI (large-v3-bn)</h2>
+<h3 id="1-mozilla-ai-large-v3-bn">1. Mozilla AI (large-v3-bn)</h3>
 <p>This is the large-v3 model fine-tuned by Mozilla AI.</p>
-<h3 id="step-1-download-the-model">Step 1: Download the Model</h3>
+<h4 id="step-1-download-the-model">Step 1: Download the Model</h4>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">snapshot_download</span>
 
 <span class="n">snapshot_download</span><span class="p">(</span>
@@ -607,7 +669,7 @@
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download finished!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="step-2-compile-the-unified-tokenizer">Step 2: Compile the Unified Tokenizer</h3>
+<h4 id="step-2-compile-the-unified-tokenizer">Step 2: Compile the Unified Tokenizer</h4>
 <p>Older Whisper repositories often lack a unified <code>tokenizer.json</code>. We generate it from legacy configs:
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WhisperTokenizerFast</span>
 
@@ -615,16 +677,16 @@
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/mozilla_large_source&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unified tokenizer.json created successfully!&quot;</span><span class="p">)</span>
 </code></pre></div></p>
-<h3 id="step-3-convert-to-ctranslate2-format">Step 3: Convert to CTranslate2 Format</h3>
+<h4 id="step-3-convert-to-ctranslate2-format">Step 3: Convert to CTranslate2 Format</h4>
 <div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>./models/mozilla_large_source<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--output_dir<span class="w"> </span>./models/whisper-large-v3-bn-ct2<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--quantization<span class="w"> </span>float16
 </code></pre></div>
 <hr />
-<h2 id="2-tugstugi-medium">2. Tugstugi (Medium)</h2>
+<h3 id="2-tugstugi-medium">2. Tugstugi (Medium)</h3>
 <p>This is the BengaliAI competition winner.</p>
-<h3 id="step-1-download-the-model_1">Step 1: Download the Model</h3>
+<h4 id="step-1-download-the-model_1">Step 1: Download the Model</h4>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">snapshot_download</span>
 
 <span class="n">snapshot_download</span><span class="p">(</span>
@@ -633,23 +695,23 @@
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download finished!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="step-2-compile-the-unified-tokenizer_1">Step 2: Compile the Unified Tokenizer</h3>
+<h4 id="step-2-compile-the-unified-tokenizer_1">Step 2: Compile the Unified Tokenizer</h4>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WhisperTokenizerFast</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">WhisperTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/tugstugi_source&quot;</span><span class="p">)</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/tugstugi_source&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unified tokenizer.json created successfully!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="step-3-convert-to-ctranslate2-format_1">Step 3: Convert to CTranslate2 Format</h3>
+<h4 id="step-3-convert-to-ctranslate2-format_1">Step 3: Convert to CTranslate2 Format</h4>
 <div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>./models/tugstugi_source<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--output_dir<span class="w"> </span>./models/tugstugi_ct2_float16<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--quantization<span class="w"> </span>float16
 </code></pre></div>
 <hr />
-<h2 id="3-bitwisemind-sam-medium-the-selected-final-model">3. Bitwisemind-SAM (Medium - The Selected Final Model)</h2>
+<h3 id="3-bitwisemind-sam-medium-the-selected-final-model">3. Bitwisemind-SAM (Medium - The Selected Final Model)</h3>
 <p>This is the DL Sprint 4.0 fine-tuned model by Bitwisemind.</p>
-<h3 id="step-1-download-the-model_2">Step 1: Download the Model</h3>
+<h4 id="step-1-download-the-model_2">Step 1: Download the Model</h4>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">snapshot_download</span>
 
 <span class="n">snapshot_download</span><span class="p">(</span>
@@ -658,19 +720,64 @@
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Download finished!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="step-2-compile-the-unified-tokenizer_2">Step 2: Compile the Unified Tokenizer</h3>
+<h4 id="step-2-compile-the-unified-tokenizer_2">Step 2: Compile the Unified Tokenizer</h4>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WhisperTokenizerFast</span>
 
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">WhisperTokenizerFast</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/bitwisemind_sam&quot;</span><span class="p">)</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./models/bitwisemind_sam&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unified tokenizer.json created successfully!&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="step-3-convert-to-ctranslate2-format_2">Step 3: Convert to CTranslate2 Format</h3>
+<h4 id="step-3-convert-to-ctranslate2-format_2">Step 3: Convert to CTranslate2 Format</h4>
 <div class="highlight"><pre><span></span><code>ct2-transformers-converter<span class="w"> </span>--model<span class="w"> </span>./models/bitwisemind_sam<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--output_dir<span class="w"> </span>./models/bitwisemind_sam_ct2_float16<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--copy_files<span class="w"> </span>preprocessor_config.json<span class="w"> </span>generation_config.json<span class="w"> </span>tokenizer.json<span class="w"> </span>tokenizer_config.json<span class="w"> </span>special_tokens_map.json<span class="w"> </span>added_tokens.json<span class="w"> </span>normalizer.json<span class="w"> </span>merges.txt<span class="w"> </span>vocab.json<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--quantization<span class="w"> </span>float16
 </code></pre></div>
+<hr />
+<h2 id="running-experiments">Running Experiments</h2>
+<p>The core evaluation logic and transcription pipeline are contained in the Jupyter Notebook:
+<strong><code>experiment.ipynb</code></strong></p>
+<p>To run the experiments sequentially:</p>
+<ol>
+<li><strong>Load DLLs:</strong> Run the initial DLL loading cell (required for CTranslate2 on Windows).</li>
+<li><strong>Load Helpers:</strong> Run the transcription helper function cell to initialize the processing logic.</li>
+<li><strong>Run Models:</strong> Under each specific model section:</li>
+<li>First, run the <strong>Model Loading</strong> cell to initialize the model in VRAM.</li>
+<li>Then, run the <strong>Transcription</strong> cell to process the dataset.</li>
+</ol>
+<p><em>Note: All output transcriptions and evaluation metrics are saved to the <code>backup/bn1/Outputs</code> folder during experimental runs.</em></p>
+<hr />
+<h2 id="web-app-deployment">Web App Deployment</h2>
+<p>The project includes a real-time web application to stream transcription results. <strong>Make sure to activate the necessary python enviromnent before running this</strong>.</p>
+<p><strong>Start the Backend (FastAPI)</strong>
+<div class="highlight"><pre><span></span><code>.<span class="se">\v</span>env<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+<span class="nb">cd</span><span class="w"> </span>deployment/backend
+python<span class="w"> </span>main.py
+</code></pre></div></p>
+<p><strong>Start the Frontend (React/Vite)</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>deployment/frontend
+npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div></p>
+<hr />
+<h2 id="project-structure">Project Structure</h2>
+<div class="highlight"><pre><span></span><code>├── dataset/                     # Contains video metadata and extracted audio
+├── deployment/                  # Deployment source code (Backend/Frontend)
+├── models/                      # Downloaded and compiled faster-whisper (ct2) models
+├── Outputs/                     # Final transcribed outputs
+├── download_dataset.py          # Script to download YouTube videos via yt-dlp
+├── experiment.ipynb             # Main experimental model evaluation notebook
+├── flops_analysis.ipynb         # GFLOPS calculation logic for model architectures
+├── License                      # MIT License
+├── Model_Guide.md               # Guide to download and compile ct2 version models
+├── Progress_Report_Final.pdf    # Detailed Progress Report of the project
+├── README.md                    # Readme file for the project
+└── requirements.txt             # Python dependencies (requires Python 3.11)
+</code></pre></div>
+<h2 id="author">Author</h2>
+<p><a href="https://github.com/JyotismoyKalita">Jyotismoy Kalita</a></p>
+<h2 id="license">License</h2>
+<p>MIT License</p>
 
 
 
@@ -730,6 +837,10 @@
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
