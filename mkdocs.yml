@@ -16,13 +16,18 @@ theme:
     accent: deep purple
 
 nav:
-  - Home: index.md
-  - Model Compilation Guide: Model_Guide.md
-  - Detailed Project Explanations: Progress_Report.md
+  - Project Report: index.md
+  - Setup & Installation Guide: Setup_Guide.md
 
 markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
