@@ -1,5 +1,7 @@
 # Project Report: Timestamped Transcription of Bengali YouTube Videos
 
+_- [Jyotismoy Kalita](https://www.linkedin.com/in/jyotismoy-kalita/)_
+
 ### Project Guidance
 
 - **Mentors:** Parth Dhola Sir and Amaan Irfan Sir  
