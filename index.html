@@ -49,6 +49,8 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -60,10 +62,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="red">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -88,8 +92,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="Bengali YouTube Transcription" class="md-header__button md-logo" aria-label="Bengali YouTube Transcription" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -114,7 +117,33 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -251,8 +280,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="Bengali YouTube Transcription" class="md-nav__button md-logo" aria-label="Bengali YouTube Transcription" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="assets/logo.png" alt="logo">
 
     </a>
     Bengali YouTube Transcription
@@ -1635,7 +1663,25 @@ We strictly enforce a consistent audio format: <strong>16 kHz, Mono, PCM 16-bit 
 <li><strong>Optimized for Real-world Audio</strong>: The DL Sprint 4.0 fine-tuning on 15,000 clean audio segments transformed the already strong <code>tugstugi</code> architecture into a production-ready model that rarely hallucinates or drops speech.</li>
 </ol>
 <h3 id="comprehensive-model-comparison">Comprehensive Model Comparison</h3>
-<pre class="mermaid"><code>%%{init: { "themeVariables": { "xyChart": { "plotColorPalette": "#3F51B5" } } } }%%
+<pre class="mermaid"><code>%%{init: { 
+  "theme": "base",
+  "themeVariables": { 
+    "background": "transparent",
+    "xyChart": { 
+      "backgroundColor": "transparent",
+      "plotColorPalette": "#d32f2f",
+      "titleColor": "var(--md-typeset-color)",
+      "xAxisLabelColor": "var(--md-typeset-color)",
+      "xAxisTitleColor": "var(--md-typeset-color)",
+      "xAxisLineColor": "var(--md-typeset-color)",
+      "xAxisTickColor": "var(--md-typeset-color)",
+      "yAxisLabelColor": "var(--md-typeset-color)",
+      "yAxisTitleColor": "var(--md-typeset-color)",
+      "yAxisLineColor": "var(--md-typeset-color)",
+      "yAxisTickColor": "var(--md-typeset-color)"
+    } 
+  } 
+} }%%
 xychart-beta
     title "Average Word Error Rate (WER %) by Model"
     x-axis ["Baseline", "Mozilla AI", "Tugstugi", "Bitwisemind-SAM"]
@@ -1756,9 +1802,31 @@ xychart-beta
 </table>
 <p><em>(Note: The Worst Case compute cost for the Medium architecture is significantly cheaper than the Best Case compute cost for the Large architecture.)</em></p>
 <h3 id="flops-reduction-visualization">FLOPs Reduction Visualization</h3>
-<pre class="mermaid"><code>pie title Computational Cost (Best Case TFLOPS)
-    "Large Architecture (2.22 TFLOPS)" : 2.22
-    "Medium Architecture (1.07 TFLOPS)" : 1.07</code></pre>
+<pre class="mermaid"><code>%%{init: { 
+  "theme": "base",
+  "themeVariables": { 
+    "background": "transparent",
+    "xyChart": { 
+      "backgroundColor": "transparent",
+      "plotColorPalette": "#d32f2f",
+      "titleColor": "var(--md-typeset-color)",
+      "xAxisLabelColor": "var(--md-typeset-color)",
+      "xAxisTitleColor": "var(--md-typeset-color)",
+      "xAxisLineColor": "var(--md-typeset-color)",
+      "xAxisTickColor": "var(--md-typeset-color)",
+      "yAxisLabelColor": "var(--md-typeset-color)",
+      "yAxisTitleColor": "var(--md-typeset-color)",
+      "yAxisLineColor": "var(--md-typeset-color)",
+      "yAxisTickColor": "var(--md-typeset-color)"
+    } 
+  } 
+} }%%
+xychart-beta horizontal
+    title "Computational Cost (Best Case TFLOPS)"
+    x-axis ["Medium Architecture", "Large Architecture"]
+    y-axis "TFLOPS" 0 --&gt; 3
+    bar [1.07, 2.22]
+</code></pre>
 <h3 id="conclusion">Conclusion</h3>
 <p>The data clearly supports our decision. While OpenAI's default <code>large-v3</code> models are incredibly powerful for high-resource languages, zero-shot Bengali transcription requires heavy, specialized fine-tuning. The <strong>Bitwisemind-SAM</strong> model, converted into our optimized CTranslate2 <code>faster-whisper</code> format, delivers the speed, accuracy, and acoustic robustness required to deploy a highly reliable Bengali transcription service.</p>
 <p><br></p>
@@ -1772,9 +1840,15 @@ xychart-beta
     B --&gt;|"16kHz, Mono, PCM 16-bit WAV"| C("Faster-Whisper Pipeline")
     C --&gt;|Silero VAD Filtering| D("Bitwisemind-SAM CT2 Model")
     D --&gt;|Semantic Chunking| E("Final Timestamped Transcription")
-    style B fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:white
-    style D fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:white
-    style E fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:white</code></pre>
+
+    %% Lock down hardcoded fallback Hex colors so the internal parser engine doesn't crash
+    classDef success fill:#4caf5020,stroke:#4CAF50,stroke-width:2px;
+    classDef info fill:#2196f320,stroke:#2196F3,stroke-width:2px;
+    classDef warning fill:#ff980020,stroke:#FF9800,stroke-width:2px;
+
+    class B success;
+    class D info;
+    class E warning;</code></pre>
 <h3 id="1-data-ingestion-preprocessing">1. Data Ingestion &amp; Preprocessing</h3>
 <p>The pipeline accepts two types of inputs:</p>
 <ul>

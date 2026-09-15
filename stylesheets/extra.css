@@ -1,0 +1,15 @@
+.md-content a {
+    color: #d32f2f;
+}
+
+.md-content a:hover {
+    color: #b71c1c;
+}
+
+.md-nav__link--active {
+    color: #d32f2f !important;
+}
+
+.md-nav__item--active > .md-nav__link {
+    color: #d32f2f !important;
+}
