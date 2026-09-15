@@ -23,7 +23,7 @@ To achieve this, we evaluate several state-of-the-art automatic speech recogniti
 
 This progress report documents the journey from collecting a robust testing dataset to evaluating open-source models, and finally identifying the best-performing model for our use case.
 
-## Project Demonstration
+### 1.1 Project Demonstration
 
 
 > **P.S. Additional notes not mentioned in the video:**  
@@ -40,7 +40,7 @@ This progress report documents the journey from collecting a robust testing data
  
 To ensure our evaluation accurately reflects real-world performance, we curated a diverse dataset of Bengali YouTube videos. We focused on news clips as they contain clear speech, but still present challenges like background noise and varying reporter accents.
  
-### Chosen Videos
+### 2.1 Chosen Videos
  
 We selected eight specific videos (4 short, 4 long) and mapped them in `dataset/metadata.csv`:
  
@@ -55,7 +55,7 @@ We selected eight specific videos (4 short, 4 long) and mapped them in `dataset/
 | **Shamik(Long)** | Long | ~20 mins | [YouTube](https://www.youtube.com/watch?v=rRZb83UjDog) |
 | **10am News(Long)** | Long | ~21 mins | [YouTube](https://www.youtube.com/watch?v=1r9VQ-N-r88) |
  
-### Audio Extraction via `yt-dlp` and `ffmpeg`
+### 2.2 Audio Extraction via `yt-dlp` and `ffmpeg`
  
 To process these videos uniformly, we utilized `yt-dlp` for downloading and `ffmpeg` for audio extraction. 
 We strictly enforce a consistent audio format: **16 kHz, Mono, PCM 16-bit WAV**. This format is universally required by Whisper-based models for optimal processing.
@@ -88,12 +88,12 @@ def download_and_extract_audio(url, output_stem):
 
 Throughout this project, we prioritize the **faster-whisper** implementation of OpenAI's Whisper models over the standard HuggingFace/OpenAI versions. 
 
-### Why faster-whisper?
+### 3.1 Why faster-whisper?
 1. **CTranslate2 Backend**: It utilizes the highly optimized CTranslate2 engine, which significantly reduces VRAM usage and speeds up inference times by up to 4x compared to the original implementation.
 2. **Built-in VAD (Voice Activity Detection)**: Faster-whisper integrates Silero VAD. This allows us to filter out silence and non-speech segments *before* they are fed into the transformer, greatly reducing hallucinations.
 3. **Batching Support**: Using `BatchedInferencePipeline`, we can process multiple chunks of audio simultaneously, maximizing GPU utilization.
 
-### Transformer Core & Quantization Logic
+### 3.2 Transformer Core & Quantization Logic
 Whisper relies on the standard Transformer encoder-decoder architecture, centered around the scaled dot-product attention mechanism:
 
 $$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $$
@@ -131,7 +131,7 @@ print("CUDA DLLs loaded")
 
 To objectively evaluate the transcription quality, we use the industry-standard **JIWER** library.
 
-### Metrics Computed
+### 4.1 Metrics Computed
 - **WER (Word Error Rate)**: Measures how many words were inserted, deleted, or substituted compared to the ground truth.
 
 $$ \text{WER} = \frac{S + D + I}{N} $$
@@ -146,7 +146,7 @@ Where:
 - **CER (Character Error Rate)**: Measures character-level errors. Particularly useful for Bengali to track minor spelling mistakes (matras, juktakkhors) that might artificially inflate WER.
 - **Word Accuracy**: The percentage of words correctly predicted.
 
-### Pre-processing for Bengali
+### 4.2 Pre-processing for Bengali
 Before computing metrics, we clean both the ground truth and predicted text by:
 
 - Removing newlines and excess whitespace.
@@ -164,7 +164,7 @@ Our first test was with the default OpenAI `large-v3` model. While `large-v3` is
 
 As noted in various ASR research communities, zero-shot performance of base Whisper models on low-resource languages like Bengali often suffers from "hallucinations" and a tendency to drop (delete) large chunks of audio if the acoustic confidence drops below a certain threshold.
 
-### Evaluation Results
+### 5.1 Evaluation Results
 
 | Video | Video Length | Transcription Time | WER % | CER % | Word Accuracy % | GT Words | Pred Words | Correct Words | Substitutions | Deletions (Missed) | Insertions |
 |--|--|--|--|--|--|--|--|--|--|--|--|
@@ -189,7 +189,7 @@ To improve upon the baseline, we tested the `mozilla-ai/faster-whisper-large-v3-
 
 While this model benefits from targeted Bengali training data, community reports indicate that generalized fine-tunes still struggle with highly noisy, real-world audio like YouTube news broadcasts compared to models trained explicitly on competition-grade regional datasets.
 
-### CTranslate2 Conversion
+### 6.1 CTranslate2 Conversion
 
 Because a `faster-whisper` compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:
 
@@ -197,7 +197,7 @@ Because a `faster-whisper` compatible version of this model was not readily avai
 ct2-transformers-converter --model mozilla-ai/whisper-large-v3-bn --output_dir models/whisper-large-v3-bn-ct2 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
 ```
 
-### Evaluation Results
+### 6.2 Evaluation Results
 
 | Video | Video Length | Transcription Time | WER % | CER % | Word Accuracy % | GT Words | Pred Words | Correct Words | Substitutions | Deletions (Missed) | Insertions |
 |--|--|--|--|--|--|--|--|--|--|--|--|
@@ -222,7 +222,7 @@ The `tugstugi` model (`tugstugi/bengaliai-regional-asr_whisper-medium`) represen
 
 Unlike the generic large-v3 models, this model is built on the `medium` architecture but features a **custom 12k vocabulary tokenizer** specifically optimized for Bengali. Furthermore, it was heavily trained on diverse regional datasets including OpenSLR, Kathbath, and pseudo-labeled YouTube data. Because of this specialized architecture and training corpus, it is widely cited as the baseline foundation for state-of-the-art Bengali transcription.
 
-### CTranslate2 Conversion
+### 7.1 CTranslate2 Conversion
 
 Because a `faster-whisper` compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:
 
@@ -230,7 +230,7 @@ Because a `faster-whisper` compatible version of this model was not readily avai
 ct2-transformers-converter --model tugstugi/bengaliai-regional-asr_whisper-medium --output_dir models/tugstugi_ct2_float16 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
 ```
 
-### Evaluation Results
+### 7.2 Evaluation Results
 
 | Video | Video Length | Transcription Time | WER % | CER % | Word Accuracy % | GT Words | Pred Words | Correct Words | Substitutions | Deletions (Missed) | Insertions |
 |--|--|--|--|--|--|--|--|--|--|--|--|
@@ -255,7 +255,7 @@ The `bitwisemind-sam` model (`bitwisemind/sam_15000_clean_text_full_model`) is a
 
 To achieve this, the team took the already-excellent `tugstugi` model and further fine-tuned it on a highly curated, custom dataset of approximately 15,000 clean, chunked Bengali audio segments. This research-grade fine-tuning specifically targeted the acoustic conditions, background noise, and speaker variability commonly found in real-world media (like our YouTube dataset). - [Bitwisemind Research Paper](https://arxiv.org/pdf/2605.08214)
 
-### CTranslate2 Conversion
+### 8.1 CTranslate2 Conversion
 
 Because a `faster-whisper` compatible version of this model was not readily available, we compiled it into a CTranslate2 (ct2) format ourselves. This ensures we can leverage the speed, batching, and VAD capabilities of our pipeline. We used the following conversion command:
 
@@ -263,7 +263,7 @@ Because a `faster-whisper` compatible version of this model was not readily avai
 ct2-transformers-converter --model bitwisemind/sam_15000_clean_text_full_model --output_dir models/bitwisemind_sam_ct2_float16 --copy_files preprocessor_config.json generation_config.json tokenizer.json tokenizer_config.json special_tokens_map.json added_tokens.json normalizer.json merges.txt vocab.json --quantization float16
 ```
 
-### Evaluation Results
+### 8.2 Evaluation Results
 
 | Video | Video Length | Transcription Time | WER % | CER % | Word Accuracy % | GT Words | Pred Words | Correct Words | Substitutions | Deletions (Missed) | Insertions |
 |--|--|--|--|--|--|--|--|--|--|--|--|
@@ -286,13 +286,13 @@ ct2-transformers-converter --model bitwisemind/sam_15000_clean_text_full_model -
 
 After extensive evaluation across diverse Bengali YouTube news clips (featuring varying background noise levels, different speaker accents, and complex vocabulary), we have definitively selected the **Bitwisemind-SAM** (`bitwisemind/sam_15000_clean_text_full_model`) model for our transcription pipeline.
 
-### Why Bitwisemind-SAM?
+### 9.1 Why Bitwisemind-SAM?
 
 1. **Superior Accuracy**: As demonstrated in the comparison table below, Bitwisemind-SAM consistently achieved the lowest Word Error Rate (WER) across every single video tested, mostly staying under the 20% mark.
 2. **Robustness to Deletions**: Base models like `large-v3` dropped massive chunks of audio when faced with noisy YouTube conditions. Bitwisemind-SAM effectively mitigated these deletions.
 3. **Optimized for Real-world Audio**: The DL Sprint 4.0 fine-tuning on 15,000 clean audio segments transformed the already strong `tugstugi` architecture into a production-ready model that rarely hallucinates or drops speech.
 
-### Comprehensive Model Comparison
+### 9.2 Comprehensive Model Comparison
 
 ```mermaid
 %%{init: { 
@@ -334,7 +334,7 @@ The table below aggregates the Word Error Rate (WER %) of every tested model aga
 | Shamik(Long) | 20m 33s | 83.31% | 72.19% | 33.94% | **20.19%** |
 | 10am News(Long) | 21m 26s | 86.77% | 70.56% | 32.74% | **20.64%** |
 
-### Computational Efficiency (FLOPs Analysis)
+### 9.3 Computational Efficiency (FLOPs Analysis)
 
 To further validate our selection, we profiled the theoretical Floating Point Operations (FLOPs) required to process a standard 30-second audio chunk. Because compute cost is dictated strictly by model architecture (parameter count and tensor dimensions), models fine-tuned on the same base architecture share mathematically identical theoretical FLOPs.
 
@@ -349,7 +349,7 @@ The table below demonstrates that our selected Medium architecture not only achi
 
 *(Note: The Worst Case compute cost for the Medium architecture is significantly cheaper than the Best Case compute cost for the Large architecture.)*
 
-### FLOPs Reduction Visualization
+### 9.4 FLOPs Reduction Visualization
 
 ```mermaid
 %%{init: { 
@@ -379,7 +379,7 @@ xychart-beta horizontal
 
 ```
 
-### Conclusion
+### 9.5 Conclusion
 
 The data clearly supports our decision. While OpenAI's default `large-v3` models are incredibly powerful for high-resource languages, zero-shot Bengali transcription requires heavy, specialized fine-tuning. The **Bitwisemind-SAM** model, converted into our optimized CTranslate2 `faster-whisper` format, delivers the speed, accuracy, and acoustic robustness required to deploy a highly reliable Bengali transcription service.
 
@@ -391,7 +391,7 @@ The data clearly supports our decision. While OpenAI's default `large-v3` models
 
 With our ideal model selected and the parameters tuned, we have established the final, highly-optimized Bengali ASR pipeline. The system is designed to take either a direct YouTube link or a local video file, handle all necessary preprocessing steps automatically, and output a clean, timestamped transcription.
 
-### Pipeline Architecture
+### 10.1 Pipeline Architecture
 
 Below is a visualization of the data flow in our final pipeline:
 
@@ -413,7 +413,7 @@ graph TD
     class E warning;
 ```
 
-### 1. Data Ingestion & Preprocessing
+#### 1. Data Ingestion & Preprocessing
 The pipeline accepts two types of inputs:
 
 - **YouTube Links**: If a URL is provided, `yt-dlp` fetches the best available audio stream.
@@ -421,13 +421,13 @@ The pipeline accepts two types of inputs:
 
 Regardless of the source, the media is piped through `ffmpeg`. `ffmpeg` is strictly configured to output a **16 kHz, Mono, PCM 16-bit WAV** file. This normalizes all inputs to the exact format expected by Whisper's feature extractor, preventing any unexpected acoustic artifacts.
 
-### 2. Transcription Engine
+#### 2. Transcription Engine
 The normalized audio is passed to the `BatchedInferencePipeline` utilizing our custom-compiled **CTranslate2 Bitwisemind-SAM model**. 
 
 - **VAD Filtering**: Before processing, the built-in Silero Voice Activity Detection (VAD) filters out prolonged silences and background noise segments. This is crucial for eliminating the hallucinations common in Whisper models.
 - **Batch Processing**: The audio is processed in batches (e.g., `batch_size=16`), maximizing GPU throughput and significantly accelerating the transcription of long videos.
 
-### 3. Chunking & Output Formatting
+#### 3. Chunking & Output Formatting
 The raw word-level timestamps generated by the model are parsed by our custom `stream_chunks` algorithm. It aggregates words intelligently based on:
 
 - Grammatical boundaries (punctuation like `.` or `?`).
@@ -444,7 +444,7 @@ The final result is a highly accurate, easily readable, and perfectly timed tran
 
 With the `bitwisemind-sam` model selected and the pipeline optimized, the system is wrapped into a full-stack web application located in the `VideoTranscription` directory. This allows end-users to easily interact with the model via a modern UI.
 
-### System Architecture
+### 11.1 System Architecture
 
 ```mermaid
 sequenceDiagram
@@ -478,7 +478,7 @@ The frontend provides a clean, responsive user interface.
 - Built with React and bundled via Vite for extremely fast hot-reloading and optimized production builds.
 - Connects to the FastAPI backend and consumes the NDJSON stream, dynamically updating the transcription text on the screen in real-time as the backend processes the audio.
 
-### Running the Application
+### 11.2 Running the Application
 
 To run the application locally for development:
 
