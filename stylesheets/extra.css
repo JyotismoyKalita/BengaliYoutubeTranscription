@@ -13,3 +13,50 @@
 .md-nav__item--active > .md-nav__link {
     color: #d32f2f !important;
 }
+
+.md-header__option {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px;
+  margin-right: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.md-header__option::before {
+  content: "Light";
+  order: -1;
+  transition: color 0.25s, font-weight 0.25s;
+}
+
+.md-header__option::after {
+  content: "Dark";
+  order: 1;
+  transition: color 0.25s, font-weight 0.25s;
+}
+
+[data-md-color-scheme="default"] .md-header__option::before {
+  color: var(--md-typeset-color);
+  font-weight: 700;
+  opacity: 1;
+}
+[data-md-color-scheme="default"] .md-header__option::after {
+  color: var(--md-typeset-color);
+  opacity: 0.45;
+}
+
+[data-md-color-scheme="slate"] .md-header__option::before {
+  color: var(--md-typeset-color);
+  opacity: 0.45;
+}
+[data-md-color-scheme="slate"] .md-header__option::after {
+  color: var(--md-typeset-color);
+  font-weight: 700;
+  opacity: 1;
+}
+
+[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+  content: url("../assets/logo-dark.png");
+}
