@@ -3,6 +3,7 @@ site_description: An automated, low-latency Bengali speech-to-text pipeline eval
 repo_name: JyotismoyKalita/BengaliYoutubeTranscription
 repo_url: https://github.com/JyotismoyKalita/BengaliYoutubeTranscription
 theme:
+  logo: assets/logo.png
   name: material
   icon:
     repo: fontawesome/brands/github
@@ -12,8 +13,19 @@ theme:
     - navigation.top
     - toc.integrate
   palette:
-    primary: indigo
-    accent: deep purple
+    - scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: black
+      accent: red
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
 
 nav:
   - Project Report: index.md
@@ -31,3 +43,6 @@ markdown_extensions:
 extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css

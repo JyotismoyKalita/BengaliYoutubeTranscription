@@ -295,7 +295,25 @@ After extensive evaluation across diverse Bengali YouTube news clips (featuring 
 ### Comprehensive Model Comparison
 
 ```mermaid
-%%{init: { "themeVariables": { "xyChart": { "plotColorPalette": "#3F51B5" } } } }%%
+%%{init: { 
+  "theme": "base",
+  "themeVariables": { 
+    "background": "transparent",
+    "xyChart": { 
+      "backgroundColor": "transparent",
+      "plotColorPalette": "#d32f2f",
+      "titleColor": "var(--md-typeset-color)",
+      "xAxisLabelColor": "var(--md-typeset-color)",
+      "xAxisTitleColor": "var(--md-typeset-color)",
+      "xAxisLineColor": "var(--md-typeset-color)",
+      "xAxisTickColor": "var(--md-typeset-color)",
+      "yAxisLabelColor": "var(--md-typeset-color)",
+      "yAxisTitleColor": "var(--md-typeset-color)",
+      "yAxisLineColor": "var(--md-typeset-color)",
+      "yAxisTickColor": "var(--md-typeset-color)"
+    } 
+  } 
+} }%%
 xychart-beta
     title "Average Word Error Rate (WER %) by Model"
     x-axis ["Baseline", "Mozilla AI", "Tugstugi", "Bitwisemind-SAM"]
@@ -334,9 +352,31 @@ The table below demonstrates that our selected Medium architecture not only achi
 ### FLOPs Reduction Visualization
 
 ```mermaid
-pie title Computational Cost (Best Case TFLOPS)
-    "Large Architecture (2.22 TFLOPS)" : 2.22
-    "Medium Architecture (1.07 TFLOPS)" : 1.07
+%%{init: { 
+  "theme": "base",
+  "themeVariables": { 
+    "background": "transparent",
+    "xyChart": { 
+      "backgroundColor": "transparent",
+      "plotColorPalette": "#d32f2f",
+      "titleColor": "var(--md-typeset-color)",
+      "xAxisLabelColor": "var(--md-typeset-color)",
+      "xAxisTitleColor": "var(--md-typeset-color)",
+      "xAxisLineColor": "var(--md-typeset-color)",
+      "xAxisTickColor": "var(--md-typeset-color)",
+      "yAxisLabelColor": "var(--md-typeset-color)",
+      "yAxisTitleColor": "var(--md-typeset-color)",
+      "yAxisLineColor": "var(--md-typeset-color)",
+      "yAxisTickColor": "var(--md-typeset-color)"
+    } 
+  } 
+} }%%
+xychart-beta horizontal
+    title "Computational Cost (Best Case TFLOPS)"
+    x-axis ["Medium Architecture", "Large Architecture"]
+    y-axis "TFLOPS" 0 --> 3
+    bar [1.07, 2.22]
+
 ```
 
 ### Conclusion
@@ -362,9 +402,15 @@ graph TD
     B -->|"16kHz, Mono, PCM 16-bit WAV"| C("Faster-Whisper Pipeline")
     C -->|Silero VAD Filtering| D("Bitwisemind-SAM CT2 Model")
     D -->|Semantic Chunking| E("Final Timestamped Transcription")
-    style B fill:#4CAF50,stroke:#388E3C,stroke-width:2px,color:white
-    style D fill:#2196F3,stroke:#1976D2,stroke-width:2px,color:white
-    style E fill:#FF9800,stroke:#F57C00,stroke-width:2px,color:white
+
+    %% Lock down hardcoded fallback Hex colors so the internal parser engine doesn't crash
+    classDef success fill:#4caf5020,stroke:#4CAF50,stroke-width:2px;
+    classDef info fill:#2196f320,stroke:#2196F3,stroke-width:2px;
+    classDef warning fill:#ff980020,stroke:#FF9800,stroke-width:2px;
+
+    class B success;
+    class D info;
+    class E warning;
 ```
 
 ### 1. Data Ingestion & Preprocessing
