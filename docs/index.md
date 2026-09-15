@@ -33,7 +33,7 @@ This progress report documents the journey from collecting a robust testing data
 > - For extracting audio from downloaded YouTube videos or local video files, `ffmpeg` was utilized.  
 
 <div align="center">
-  <iframe width="800" height="450" src="https://www.youtube.com/embed/GmkpxjahfRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe width="1000" height="550" src="https://www.youtube.com/embed/GmkpxjahfRc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 ## 2. Dataset for Evaluating the Model
